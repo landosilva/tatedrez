@@ -1,18 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
+using Tatedrez.Data;
 using UnityEngine;
 
-public class Piece : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
+namespace Tatedrez.Entities
+{   
+    public class Piece : MonoBehaviour
+    {   
+        [SerializeField] private Type _type;
+        [SerializeField] private SpriteRenderer _spriteRenderer;
         
-    }
+        private Style _style;
+        
+        public void SetStyle(Style style)
+        {
+            _style = style;
+            _spriteRenderer.sprite = PiecesDatabase.GetSprite(style, _type);
+        }
+        
+        public enum Style
+        {
+            White = 0,
+            Black = 1
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public enum Type
+        {
+            Pawn = 0,
+            Knight = 1,
+            Rook = 2,
+            Bishop = 3,
+            Queen = 4,
+            King = 5
+        }
     }
 }

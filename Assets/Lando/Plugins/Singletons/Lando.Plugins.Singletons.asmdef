@@ -1,0 +1,16 @@
+{
+    "name": "Lando.Plugins.Singletons",
+    "rootNamespace": "",
+    "references": [
+        "GUID:0c722489482904ab58f7d3e6a15227e9"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

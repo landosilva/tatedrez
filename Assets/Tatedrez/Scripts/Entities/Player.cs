@@ -8,6 +8,17 @@ namespace Tatedrez.Entities
 {
     public class Player : MonoBehaviour
     {   
+        [SerializeField] private Piece[] _pieces;
+        
+        private Piece.Style _style;
+        
+        public void SetStyle(Piece.Style style)
+        {
+            _style = style;
+            foreach (Piece piece in _pieces) 
+                piece.SetStyle(style);
+        }
+        
         [UsedImplicitly]
         public void OnTouch(InputAction.CallbackContext context)
         {
@@ -37,17 +48,17 @@ namespace Tatedrez.Entities
 
             void OnTouchBegan()
             {
-                Debug.Log("Touch began at position: " + touchState.position);
+                // Debug.Log("Touch began at position: " + touchState.position);
             }
             
             void OnTouchMoved()
             {
-                Debug.Log("Touch moved to position: " + touchState.position);
+                // Debug.Log("Touch moved to position: " + touchState.position);
             }
             
             void OnTouchEnded()
             {
-                Debug.Log("Touch ended at position: " + touchState.position);
+                // Debug.Log("Touch ended at position: " + touchState.position);
             }
         }
     }
