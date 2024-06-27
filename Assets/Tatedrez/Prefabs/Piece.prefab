@@ -167,3 +167,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _type: 0
   _spriteRenderer: {fileID: 8260575084486028941}
+  _movement: {fileID: 11400000, guid: 5e32ae1cd43be456fa27ca40e40fb6ba, type: 2}

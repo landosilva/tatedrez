@@ -2,7 +2,7 @@ namespace Tatedrez
 {
     public static class Constants
     {
-        private const int PPU = 16;
-        public static float PixelToUnit => 1f / PPU;
+        public static readonly int PixelsPerUnit = 16;
+        public static float PixelToUnit => 1f / PixelsPerUnit;
     }
 }

@@ -1,56 +1,44 @@
 using System.Collections.Generic;
 using Lando.Extensions;
 using UnityEngine;
+using Event = Lando.Plugins.Events.Event;
 
 namespace Tatedrez.Entities
 {
-    public class Board : MonoBehaviour
+    public partial class Board : MonoBehaviour
     {
         [SerializeField, Tooltip("Grid size in units")] private Vector2Int _size;
         [SerializeField, Tooltip("Offset in pixels")] private Vector2Int _offset;
         
         [SerializeField] private Node _nodePrefab;
         
-        private readonly List<Node> _nodes = new();
+        private readonly Dictionary<Vector2Int, Node> _map = new();
 
-        private void Start()
-        {
-            CreateNodes();
-        }
-        
+        private void Start() => CreateNodes();
+        private void OnEnable() => SubscribeEvents();
+        private void OnDisable() => UnsubscribeEvents();
+
         private void CreateNodes()
         {
-            _nodes.Clear();
+            _map.Clear();
             
             for (int x = 0; x < _size.x; x++)
             {
                 for (int y = 0; y < _size.y; y++)
                 {
+                    Vector2Int index = new(x, y);
+                    IndexToWorld(index, out Vector3 worldPosition);
+                    
                     Node node = Instantiate(_nodePrefab, transform);
-                    node.name = $"Node ({x}, {y})";
-                    Vector2Int position = new(x, y);
-                    IndexToWorld(position, out Vector3 worldPosition);
                     node.transform.position = worldPosition;
-                    _nodes.Add(node);
+                    node.Initialize(index);
+                    
+                    _map.Add(index, node);
                 }
             }
-        }
-        
-        public void WorldToNode(Vector3 worldPosition, out Node result)
-        {
-            float minSqrMagnitude = float.MaxValue;
             
-            foreach (Node node in _nodes)
-            {
-                float sqrMagnitude = (worldPosition - node.transform.position).sqrMagnitude;
-                if (sqrMagnitude >= minSqrMagnitude)
-                    continue;
-                
-                minSqrMagnitude = sqrMagnitude;
-                result = node;
-            }
-            
-            result = null;
+            foreach (Node node in _map.Values) 
+                node.SetNeighbours(board: this);
         }
 
         private void IndexToWorld(Vector2Int index, out Vector3 result)
@@ -58,21 +46,70 @@ namespace Tatedrez.Entities
             Vector2 unitOffset = _offset.ToUnits();
             result = index.Add(unitOffset);
         }
-
-#if UNITY_EDITOR
-        private void OnDrawGizmosSelected()
+        
+        private void WorldToIndex(Vector3 worldPosition, out Vector2Int result, bool clamp = true)
         {
-            Gizmos.color = Color.white.With(a: 0.5f);
-            for (int x = 0; x < _size.x; x++)
-            {
-                for (int y = 0; y < _size.y; y++)
-                {
-                    Vector2Int position = new(x, y);
-                    IndexToWorld(position, out Vector3 worldPosition);
-                    Gizmos.DrawCube(center: worldPosition, size: Vector3.one * 0.9f);
-                }
-            }
+            Vector2Int inPixels = worldPosition.ToPixels() - _offset;
+            result = inPixels.Divide(Constants.PixelsPerUnit);
+            
+            if (clamp)
+                result.Clamp(min: Vector2Int.zero, max: _size - Vector2Int.one);
         }
-#endif
+        
+        private void WorldToNode(Vector3 worldPosition, out Node result, bool clamp = true)
+        {
+            WorldToIndex(worldPosition, out Vector2Int index, clamp);
+            _map.TryGetValue(index, out result);
+        }
+        
+        public bool TryGetNode(Vector2Int index, out Node result) => _map.TryGetValue(index, out result);
+        
+        private void SubscribeEvents()
+        {
+            Event.Subscribe<Piece.HoldEvent>(OnPieceHold);
+            Event.Subscribe<Piece.ReleaseEvent>(OnPieceRelease);
+        }
+        
+        private void UnsubscribeEvents()
+        {
+            Event.Unsubscribe<Piece.HoldEvent>(OnPieceHold);
+            Event.Unsubscribe<Piece.ReleaseEvent>(OnPieceRelease);
+        }
+
+        private void OnPieceHold(Piece.HoldEvent e)
+        {
+            Piece piece = e.Piece;
+            
+            WorldToIndex(piece.Position, out Vector2Int index, clamp: false);
+            bool placed = TryGetNode(index, out Node originNode);
+            
+            List<Node> toHighlight = new();
+            
+            if (!placed)
+                toHighlight.AddRange(collection: _map.Values);
+            else
+                toHighlight.AddRange(collection: piece.Movement.GetNodes(board: this, originNode));
+            
+            foreach (Node node in toHighlight)
+                node.Highlight();
+        }
+        
+        private void OnPieceRelease(Piece.ReleaseEvent e)
+        {
+            Piece piece = e.Piece;
+
+            WorldToNode(e.Piece.Position, out Node origin);
+            WorldToNode(e.Piece.ViewPosition, out Node destination);
+
+            bool wasHighlighted = destination.IsHighlighted;
+            foreach (Node node in _map.Values) 
+                node.Unhighlight();
+            
+            if (!destination.IsEmpty || !wasHighlighted)
+                return;
+            
+            origin.Clear();
+            destination.Place(piece);
+        }
     }
 }

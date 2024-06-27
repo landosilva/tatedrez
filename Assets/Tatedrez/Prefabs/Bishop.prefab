@@ -13,6 +13,18 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1356872233724621683, guid: 2c4b786b8d52b40c196aa60782b8377a, type: 3}
+      propertyPath: _movement
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c1bea37739354ce38fa753c867b83a5, type: 2}
+    - target: {fileID: 1356872233724621683, guid: 2c4b786b8d52b40c196aa60782b8377a, type: 3}
+      propertyPath: _movements.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1356872233724621683, guid: 2c4b786b8d52b40c196aa60782b8377a, type: 3}
+      propertyPath: _movements.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8c1bea37739354ce38fa753c867b83a5, type: 2}
+    - target: {fileID: 1356872233724621683, guid: 2c4b786b8d52b40c196aa60782b8377a, type: 3}
       propertyPath: _visuals.Array.data[0]._sprite
       value: 
       objectReference: {fileID: 517497341, guid: 097a5e9b3df0343b2b1622fcd796cffc, type: 3}

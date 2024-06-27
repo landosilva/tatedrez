@@ -4,22 +4,20 @@ using UnityEngine;
 
 namespace Tatedrez.Entities
 {   
-    public class Piece : MonoBehaviour
+    public partial class Piece : MonoBehaviour
     {   
         [SerializeField] private Type _type;
         [SerializeField] private SpriteRenderer _spriteRenderer;
         
+        [SerializeField] private Movement _movement;
+        
         private Style _style;
-        private Vector3 _origin;
-        private Vector3 _last;
         private Coroutine _followCoroutine;
         
-        private readonly Collider2D[] _buffer = new Collider2D[1];
-
-        private void Awake()
-        {
-            _origin = transform.position;
-        }
+        public Movement Movement => _movement;
+        
+        public Vector3 Position => transform.position;
+        public Vector3 ViewPosition => _spriteRenderer.transform.position;
 
         public void SetStyle(Style style)
         {
@@ -29,14 +27,12 @@ namespace Tatedrez.Entities
         
         public void Follow(Transform target)
         {
-            if (TryGetNode(transform.position, out Node node)) 
-                node.Clear();
-            
-            _last = transform.position;
             Vector3 offset = transform.position - target.position;
             
             StopFollowing();
             _followCoroutine = StartCoroutine(routine: FollowEnumerator());
+            
+            NotifyHold();
             
             return;
 
@@ -44,7 +40,7 @@ namespace Tatedrez.Entities
             {
                 while (true)
                 {
-                    transform.position = target.position + offset;
+                    _spriteRenderer.transform.position = target.position + offset;
                     yield return null;
                 }
             }
@@ -53,21 +49,9 @@ namespace Tatedrez.Entities
         public void Release()
         {
             StopFollowing();
-
-            if (TryGetNode(transform.position, out Node node) && node.IsEmpty)
-            {
-                _last = node.transform.position;
-                node.Place(piece: this);
-                return;
-            }
-
-            if (TryGetNode(_last, out Node lastNode))
-            {
-                lastNode.Place(piece: this);
-                return;
-            }
+            NotifyRelease();
             
-            transform.position = _origin;
+            _spriteRenderer.transform.localPosition = Vector3.zero;
         }
         
         private void StopFollowing()
@@ -77,34 +61,6 @@ namespace Tatedrez.Entities
             
             StopCoroutine(_followCoroutine);
             _followCoroutine = null;
-        }
-
-        private bool TryGetNode(Vector3 position, out Node node)
-        {
-            int overlapped = Physics2D.OverlapPointNonAlloc(position, _buffer, Layer.Mask.Node);
-            if (overlapped == 0)
-            {
-                node = null;
-                return false;
-            }
-            node = _buffer[0].GetComponentInParent<Node>();
-            return true;
-        }
-        
-        public enum Style
-        {
-            White = 0,
-            Black = 1
-        }
-
-        public enum Type
-        {
-            Pawn = 0,
-            Knight = 1,
-            Rook = 2,
-            Bishop = 3,
-            Queen = 4,
-            King = 5
         }
     }
 }
