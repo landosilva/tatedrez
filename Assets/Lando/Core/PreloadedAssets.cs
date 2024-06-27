@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace Lando.Plugins.Singletons.Editor
+namespace Lando.Core
 {
     public static class PreloadedAssets
     {   

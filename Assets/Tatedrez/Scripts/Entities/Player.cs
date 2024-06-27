@@ -1,3 +1,4 @@
+using Lando.Plugins.Debugger;
 using Tatedrez.Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -43,7 +44,7 @@ namespace Tatedrez.Entities
 
             void OnTouchBegan()
             {
-                DebugManager.Log("Touch began");
+                Debugger.Log("Touch began");
                 
                 _finger.transform.position = CameraManager.ScreenToWorld(touchState.position);
                 
@@ -61,7 +62,7 @@ namespace Tatedrez.Entities
             
             void OnTouchEnded()
             {
-                DebugManager.Log("Touch ended");
+                Debugger.Log("Touch ended");
                 
                 if (_holdingPiece == null)
                     return;

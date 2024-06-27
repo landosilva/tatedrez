@@ -1,5 +1,6 @@
 using System;
-using Lando.Extensions;
+using Lando.Core.Extensions;
+using Tatedrez.Extensions;
 using UnityEngine;
 
 namespace Tatedrez.Entities

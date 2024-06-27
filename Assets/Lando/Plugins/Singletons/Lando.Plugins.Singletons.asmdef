@@ -2,7 +2,8 @@
     "name": "Lando.Plugins.Singletons",
     "rootNamespace": "",
     "references": [
-        "GUID:0c722489482904ab58f7d3e6a15227e9"
+        "GUID:0c722489482904ab58f7d3e6a15227e9",
+        "GUID:5106ef03c074f46f3989d88b40530470"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

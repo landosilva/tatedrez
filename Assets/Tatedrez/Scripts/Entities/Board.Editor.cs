@@ -1,5 +1,5 @@
 #if UNITY_EDITOR
-using Lando.Extensions;
+using Lando.Core.Extensions;
 using UnityEngine;
 
 namespace Tatedrez.Entities

@@ -1,4 +1,5 @@
-using LightningRod.Utilities;
+using Lando.Core;
+using Lando.Core.Extensions;
 using UnityEditor;
 using UnityEngine;
 
@@ -27,7 +28,7 @@ namespace Lando.Plugins.Generators.Editor.Layer
 
         public void UpdatePathAndNamespace()
         {
-            string productName = StringUtilities.ReplaceWhitespace(PlayerSettings.productName);
+            string productName = PlayerSettings.productName.ReplaceWhitespace();
             string[] list = _path.Split('/');
             list[0] = productName;
             _path = string.Join('/', list);

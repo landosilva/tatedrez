@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using Lando.Plugins.Debugger;
 using Tatedrez.Entities;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -22,7 +23,7 @@ namespace Tatedrez.Managers
         [UsedImplicitly]
         private void OnPlayerJoined(PlayerInput playerInput)
         {
-            DebugManager.Log("Player joined with index: " + playerInput.playerIndex);
+            Debugger.Log("Player joined with index: " + playerInput.playerIndex);
             
             Player player = playerInput.GetComponent<Player>();
             
@@ -38,7 +39,7 @@ namespace Tatedrez.Managers
         [UsedImplicitly]
         private void OnPlayerLeft(PlayerInput playerInput)
         {
-            DebugManager.Log("Player left with index: " + playerInput.playerIndex);
+            Debugger.Log("Player left with index: " + playerInput.playerIndex);
         }
     }
 }

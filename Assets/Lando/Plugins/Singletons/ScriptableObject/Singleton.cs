@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
+using Lando.Core;
 using UnityEngine;
 #if UNITY_EDITOR
-using Lando.Plugins.Singletons.Editor;
 using UnityEditor;
 #endif
 

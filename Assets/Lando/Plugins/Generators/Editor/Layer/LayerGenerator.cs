@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using LightningRod.Utilities;
+using Lando.Core.Extensions;
+using Lando.Core.Utilities;
 using UnityEditor;
 using UnityEngine;
 
@@ -53,6 +54,8 @@ namespace Lando.Plugins.Generators.Editor.Layer
             
             AssetDatabase.ImportAsset(fullPath);
             
+            return;
+
             string Ident(int level) => StringUtilities.Indent(level);
             void OpenCurlyBrackets() => stringBuilder.AppendLine($"{Ident(identLevel++)}{{");
             void CloseCurlyBrackets() => stringBuilder.AppendLine($"{Ident(--identLevel)}}}");
@@ -88,7 +91,7 @@ namespace Lando.Plugins.Generators.Editor.Layer
             internal LayerData(int layer)
             {
                 _originalName = LayerMask.LayerToName(layer);
-                Name = StringUtilities.ReplaceWhitespace(_originalName);
+                Name = _originalName.ReplaceWhitespace();
                 Layer = layer;
             }
         }

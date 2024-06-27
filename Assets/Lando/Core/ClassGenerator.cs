@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using LightningRod.Utilities;
+using Lando.Core.Utilities;
 
 namespace Lando.Plugins.Generators.Editor
 {
