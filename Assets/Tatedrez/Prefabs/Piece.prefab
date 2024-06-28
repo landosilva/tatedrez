@@ -82,7 +82,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
 --- !u!70 &4082784272745962674
@@ -318,7 +318,7 @@ MonoBehaviour:
   _type: 0
   _spriteRenderer: {fileID: 8260575084486028941}
   _movement: {fileID: 11400000, guid: 5e32ae1cd43be456fa27ca40e40fb6ba, type: 2}
-  _placementOffset: {x: 0, y: -5}
+  _placementOffset: {x: 0, y: -7}
   _highlight: {fileID: 7116220841817329255}
   _collider: {fileID: 4082784272745962674}
   OnHeld:

@@ -811,7 +811,11 @@ PrefabInstance:
     - target: {fileID: 1194488237414293243, guid: c2f379fc48810442da07c975e71d2bd5, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -741431007, guid: 097a5e9b3df0343b2b1622fcd796cffc, type: 3}
+      objectReference: {fileID: -23450970, guid: 097a5e9b3df0343b2b1622fcd796cffc, type: 3}
+    - target: {fileID: 1194488237414293243, guid: c2f379fc48810442da07c975e71d2bd5, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4374366721660471720, guid: c2f379fc48810442da07c975e71d2bd5, type: 3}
       propertyPath: _style
       value: 0
@@ -859,11 +863,19 @@ PrefabInstance:
     - target: {fileID: 7238029446795924905, guid: c2f379fc48810442da07c975e71d2bd5, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 517497341, guid: 097a5e9b3df0343b2b1622fcd796cffc, type: 3}
+      objectReference: {fileID: -516279144, guid: 097a5e9b3df0343b2b1622fcd796cffc, type: 3}
+    - target: {fileID: 7238029446795924905, guid: c2f379fc48810442da07c975e71d2bd5, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7872648234078199982, guid: c2f379fc48810442da07c975e71d2bd5, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -327881837, guid: 097a5e9b3df0343b2b1622fcd796cffc, type: 3}
+      objectReference: {fileID: -1035703797, guid: 097a5e9b3df0343b2b1622fcd796cffc, type: 3}
+    - target: {fileID: 7872648234078199982, guid: c2f379fc48810442da07c975e71d2bd5, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

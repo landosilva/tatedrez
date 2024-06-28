@@ -16,12 +16,12 @@ MonoBehaviour:
   - _style: 0
     _texture: {fileID: 2800000, guid: 097a5e9b3df0343b2b1622fcd796cffc, type: 3}
     _sprites:
-    - {fileID: 2072769718, guid: 097a5e9b3df0343b2b1622fcd796cffc, type: 3}
-    - {fileID: -327881837, guid: 097a5e9b3df0343b2b1622fcd796cffc, type: 3}
-    - {fileID: -741431007, guid: 097a5e9b3df0343b2b1622fcd796cffc, type: 3}
-    - {fileID: 517497341, guid: 097a5e9b3df0343b2b1622fcd796cffc, type: 3}
-    - {fileID: 869589800, guid: 097a5e9b3df0343b2b1622fcd796cffc, type: 3}
-    - {fileID: -330486507, guid: 097a5e9b3df0343b2b1622fcd796cffc, type: 3}
+    - {fileID: 1528787152, guid: 097a5e9b3df0343b2b1622fcd796cffc, type: 3}
+    - {fileID: -1035703797, guid: 097a5e9b3df0343b2b1622fcd796cffc, type: 3}
+    - {fileID: -23450970, guid: 097a5e9b3df0343b2b1622fcd796cffc, type: 3}
+    - {fileID: -516279144, guid: 097a5e9b3df0343b2b1622fcd796cffc, type: 3}
+    - {fileID: 1202309536, guid: 097a5e9b3df0343b2b1622fcd796cffc, type: 3}
+    - {fileID: -1947831706, guid: 097a5e9b3df0343b2b1622fcd796cffc, type: 3}
   - _style: 1
     _texture: {fileID: 2800000, guid: a59c4375ca8a146cf9fd488ae168bba3, type: 3}
     _sprites:
