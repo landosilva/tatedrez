@@ -1,8 +1,9 @@
 using Lando.Plugins.Debugger;
+using Tatedrez.States;
 using UnityEngine;
 using UnityEngine.Animations;
 
-namespace Tatedrez.Behaviours
+namespace Tatedrez.StateMachine.States.Game
 {
     public abstract class GameState : StateMachineBehaviour
     {

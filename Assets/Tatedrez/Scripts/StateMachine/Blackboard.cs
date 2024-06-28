@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Tatedrez.Behaviours
+namespace Tatedrez.States
 {
     public class Blackboard : MonoBehaviour
     {

@@ -3,7 +3,7 @@ using Tatedrez.Entities;
 using Tatedrez.Managers;
 using UnityEngine;
 
-namespace Tatedrez.Behaviours
+namespace Tatedrez.StateMachine.States.Game
 {
     public class PlayerTurnState : GameState
     {

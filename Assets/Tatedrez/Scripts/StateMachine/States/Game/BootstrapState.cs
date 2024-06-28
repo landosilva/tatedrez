@@ -1,9 +1,10 @@
 using Lando.Core.Extensions;
 using Tatedrez.Entities;
 using Tatedrez.Managers;
+using Tatedrez.States;
 using UnityEngine.InputSystem;
 
-namespace Tatedrez.Behaviours
+namespace Tatedrez.StateMachine.States.Game
 {
     public class BootstrapState : GameState
     {

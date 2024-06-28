@@ -1,7 +1,7 @@
 using JetBrains.Annotations;
 using Lando.Plugins.Debugger;
-using Tatedrez.Behaviours;
 using Tatedrez.Entities;
+using Tatedrez.States;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
