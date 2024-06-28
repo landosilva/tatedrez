@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _highlight: {fileID: 27965846717286069}
+  _pieceOffset: {x: 0, y: -5}
 --- !u!1 &4104900997656334891
 GameObject:
   m_ObjectHideFlags: 0

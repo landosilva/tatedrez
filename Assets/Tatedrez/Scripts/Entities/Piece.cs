@@ -1,5 +1,7 @@
 using System.Collections;
+using DG.Tweening;
 using Tatedrez.Data;
+using Tatedrez.Extensions;
 using UnityEngine;
 
 namespace Tatedrez.Entities
@@ -8,8 +10,8 @@ namespace Tatedrez.Entities
     {   
         [SerializeField] private Type _type;
         [SerializeField] private SpriteRenderer _spriteRenderer;
-        
         [SerializeField] private Movement _movement;
+        [SerializeField] private Vector2Int _placementOffset;
         
         private Style _style;
         private Coroutine _followCoroutine;
@@ -18,6 +20,7 @@ namespace Tatedrez.Entities
         
         public Vector3 Position => transform.position;
         public Vector3 ViewPosition => _spriteRenderer.transform.position;
+        public Vector2Int PlacementOffset => _placementOffset;
 
         public void SetStyle(Style style)
         {
@@ -40,7 +43,8 @@ namespace Tatedrez.Entities
             {
                 while (true)
                 {
-                    _spriteRenderer.transform.position = target.position + offset;
+                    Vector3 placementOffset = _placementOffset.ToUnits();
+                    _spriteRenderer.transform.position = target.position + offset - placementOffset;
                     yield return null;
                 }
             }
@@ -48,10 +52,17 @@ namespace Tatedrez.Entities
 
         public void Release()
         {
+            Vector3 position = _spriteRenderer.transform.position;
             StopFollowing();
             NotifyRelease();
-            
+
             _spriteRenderer.transform.localPosition = Vector3.zero;
+            // _spriteRenderer.transform.position = position;
+            // _spriteRenderer.transform.DOLocalMove(Vector3.zero, 0.2f).SetEase(Ease.OutBounce);
+
+            Vector3 scale = new(1.1f,0.9f,0);
+            transform.DOScale(scale, 0.1f).SetEase(Ease.OutBack).SetDelay(0);
+            transform.DOScale(Vector3.one, 0.2f).SetEase(Ease.OutBack).SetDelay(0.1f);
         }
         
         private void StopFollowing()

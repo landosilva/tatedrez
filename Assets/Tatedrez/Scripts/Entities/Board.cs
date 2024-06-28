@@ -99,9 +99,9 @@ namespace Tatedrez.Entities
         {
             Piece piece = e.Piece;
 
-            WorldToNode(e.Piece.Position, out Node origin);
+            WorldToNode(e.Piece.Position, out Node origin, clamp: false);
             WorldToNode(e.Piece.ViewPosition, out Node destination);
-
+            
             bool wasHighlighted = destination.IsHighlighted;
             foreach (Node node in _map.Values) 
                 node.Unhighlight();
@@ -109,7 +109,9 @@ namespace Tatedrez.Entities
             if (!destination.IsEmpty || !wasHighlighted)
                 return;
             
-            origin.Clear();
+            if (origin)
+                origin.Clear();
+            
             destination.Place(piece);
         }
     }

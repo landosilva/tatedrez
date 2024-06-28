@@ -68,6 +68,7 @@ namespace Tatedrez.Entities
                     return;
                 
                 _holdingPiece.Release();
+                _holdingPiece = null;
             }
 
             bool TryGetPiece(out Piece piece)

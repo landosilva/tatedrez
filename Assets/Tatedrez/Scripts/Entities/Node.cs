@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Tatedrez.Extensions;
 using UnityEngine;
 
 namespace Tatedrez.Entities
@@ -29,8 +30,9 @@ namespace Tatedrez.Entities
         
         public void Place(Piece piece)
         {
+            Vector3 offset = piece.PlacementOffset.ToUnits();
             _piece = piece;
-            _piece.transform.position = transform.position;
+            _piece.transform.position = transform.position + offset;
         }
         
         public void Clear()

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8260575084486028941}
   - component: {fileID: 4082784272745962674}
   m_Layer: 6
-  m_Name: Visual
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2461746837007161936}
+  m_Father: {fileID: 5356150877953046633}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8260575084486028941
 SpriteRenderer:
@@ -120,6 +120,38 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.1875}
   m_Size: {x: 0.5676687, y: 1}
   m_Direction: 0
+--- !u!1 &4575425662761606236
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5356150877953046633}
+  m_Layer: 6
+  m_Name: Visuals
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5356150877953046633
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4575425662761606236}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.3125, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7421268905290358890}
+  m_Father: {fileID: 2461746837007161936}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5434427366957318885
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,7 +182,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7421268905290358890}
+  - {fileID: 5356150877953046633}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1356872233724621683
@@ -168,3 +200,4 @@ MonoBehaviour:
   _type: 0
   _spriteRenderer: {fileID: 8260575084486028941}
   _movement: {fileID: 11400000, guid: 5e32ae1cd43be456fa27ca40e40fb6ba, type: 2}
+  _placementOffset: {x: 0, y: -5}
