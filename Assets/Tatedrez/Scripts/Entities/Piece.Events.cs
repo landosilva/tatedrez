@@ -1,4 +1,7 @@
 using Lando.Plugins.Events;
+using UnityEngine;
+using UnityEngine.Events;
+using Event = Lando.Plugins.Events.Event;
 
 namespace Tatedrez.Entities
 {   
@@ -17,6 +20,15 @@ namespace Tatedrez.Entities
             
             public ReleaseEvent(Piece piece) => Piece = piece;
         }
+        
+        public UnityEvent OnHeld;
+        public UnityEvent<Vector3> OnReleased;
+
+        private void Awake()
+        {
+            OnHeld.AddListener(NotifyHold);
+            OnReleased.AddListener(NotifyRelease);
+        }
 
         private void NotifyHold()
         { 
@@ -24,7 +36,7 @@ namespace Tatedrez.Entities
             Event.Raise(onHoldEvent);
         }
         
-        private void NotifyRelease()
+        private void NotifyRelease(Vector3 released)
         {
             ReleaseEvent onReleaseEvent = new(piece: this);
             Event.Raise(onReleaseEvent);

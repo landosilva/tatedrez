@@ -16,10 +16,10 @@ MonoBehaviour:
   _sources:
   - <Name>k__BackingField: '[GameManager.OnPlayerJoined]'
     <Color>k__BackingField: {r: 0.8, g: 0.24000001, b: 0.35963213, a: 1}
-    <Enabled>k__BackingField: 1
+    <Enabled>k__BackingField: 0
   - <Name>k__BackingField: '[Player.OnTouch.OnTouchBegan]'
     <Color>k__BackingField: {r: 0.2875786, g: 0.8, b: 0.24000001, a: 1}
-    <Enabled>k__BackingField: 1
+    <Enabled>k__BackingField: 0
   - <Name>k__BackingField: '[Player.OnTouch.OnTouchEnded]'
     <Color>k__BackingField: {r: 0.8, g: 0.24000001, b: 0.7016143, a: 1}
-    <Enabled>k__BackingField: 1
+    <Enabled>k__BackingField: 0

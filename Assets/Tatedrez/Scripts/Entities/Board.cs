@@ -100,7 +100,7 @@ namespace Tatedrez.Entities
             Piece piece = e.Piece;
 
             WorldToNode(e.Piece.Position, out Node origin, clamp: false);
-            WorldToNode(e.Piece.ViewPosition, out Node destination);
+            WorldToNode(e.Piece.View, out Node destination);
             
             bool wasHighlighted = destination.IsHighlighted;
             foreach (Node node in _map.Values) 

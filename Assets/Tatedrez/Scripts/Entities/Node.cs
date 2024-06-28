@@ -7,6 +7,7 @@ namespace Tatedrez.Entities
     public class Node : MonoBehaviour
     {
         [SerializeField] private GameObject _highlight;
+        [SerializeField] private GameObject _vfxPlace;
 
         private Piece _piece;
         
@@ -31,8 +32,12 @@ namespace Tatedrez.Entities
         public void Place(Piece piece)
         {
             Vector3 offset = piece.PlacementOffset.ToUnits();
+            Vector3 destination = transform.position + offset;
             _piece = piece;
-            _piece.transform.position = transform.position + offset;
+            _piece.transform.position = destination;
+            
+            GameObject vfx = Instantiate(_vfxPlace, transform.position, Quaternion.identity);
+            Destroy(vfx, t: 2);
         }
         
         public void Clear()
