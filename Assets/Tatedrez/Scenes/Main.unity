@@ -265,7 +265,7 @@ Camera:
   far clip plane: 100
   field of view: 60
   orthographic: 1
-  orthographic size: 2.6666667
+  orthographic size: 3.2
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -310,8 +310,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
   m_AssetsPPU: 16
-  m_RefResolutionX: 64
-  m_RefResolutionY: 64
+  m_RefResolutionX: 76
+  m_RefResolutionY: 76
   m_CropFrame: 0
   m_GridSnapping: 1
   m_FilterMode: 0
@@ -610,7 +610,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1617873086}
   - component: {fileID: 1617873087}
+  - component: {fileID: 1617873090}
   - component: {fileID: 1617873088}
+  - component: {fileID: 1617873089}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -651,6 +653,9 @@ MonoBehaviour:
   - {fileID: 1093986390}
   - {fileID: 612827257}
   _playerInputManager: {fileID: 1617873088}
+  _board: {fileID: 556434932}
+  _blackboard: {fileID: 1617873090}
+  _stateMachine: {fileID: 1617873089}
 --- !u!114 &1617873088
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -695,6 +700,39 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!95 &1617873089
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617873085}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3ab0937b91f7946dcac4438062d0e6f0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1617873090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617873085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2eb901f646b2407ba77ae0b37d274f59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1778464830
 GameObject:
   m_ObjectHideFlags: 0

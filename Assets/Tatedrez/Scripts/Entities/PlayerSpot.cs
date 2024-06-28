@@ -6,9 +6,13 @@ namespace Tatedrez.Entities
     {
         [SerializeField] private Piece.Style _style;
         [SerializeField] private Piece[] _pieces;
-        
-        private Player _player;
 
+        private float _timer;
+        
+        public Piece[] Pieces => _pieces;
+        
+        public bool IsReady { get; private set; }
+        
         private void Start()
         {
             SetStyle(_style);
@@ -25,6 +29,11 @@ namespace Tatedrez.Entities
             _style = style;
             foreach (Piece piece in _pieces) 
                 piece.SetStyle(style);
+        }
+        
+        public void SetReady(bool ready)
+        {
+            IsReady = ready;
         }
 
 #if UNITY_EDITOR

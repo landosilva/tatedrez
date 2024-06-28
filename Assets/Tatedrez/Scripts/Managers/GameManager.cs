@@ -1,23 +1,26 @@
 using JetBrains.Annotations;
 using Lando.Plugins.Debugger;
+using Tatedrez.Behaviours;
 using Tatedrez.Entities;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Tatedrez.Managers
-{
+{   
     public class GameManager : MonoBehaviour
-    {
+    {   
         [SerializeField] private PlayerSpot[] _playerSpots;
         [SerializeField] private PlayerInputManager _playerInputManager;
+        [SerializeField] private Board _board;
+        
+        [SerializeField] private Blackboard _blackboard;
+        [SerializeField] private Animator _stateMachine;
 
-        private void Start()
+        private void Awake()
         {
-            for (int i = 0; i < _playerSpots.Length; i++)
-            {
-                Touchscreen touchscreen = InputSystem.GetDevice<Touchscreen>();
-                _playerInputManager.JoinPlayer(i, pairWithDevice: touchscreen);
-            }
+            _blackboard.Set(_playerSpots);
+            _blackboard.Set(_playerInputManager);
+            _blackboard.Set(_board);
         }
 
         [UsedImplicitly]
@@ -40,6 +43,28 @@ namespace Tatedrez.Managers
         private void OnPlayerLeft(PlayerInput playerInput)
         {
             Debugger.Log("Player left with index: " + playerInput.playerIndex);
+        }
+
+        public static class Variables
+        {
+            public static class Player
+            {
+                public static readonly string Initial = "InitialPlayer";
+                public static readonly string Current = "CurrentPlayer";
+            }
+        }
+        
+        public static class States
+        {
+            public static readonly string Bootstrapped = "Bootstrapped";
+        }
+        
+        public static class Triggers
+        {
+            public static class Turn
+            {
+                public static readonly string Ended = "TurnEnded";
+            }
         }
     }
 }

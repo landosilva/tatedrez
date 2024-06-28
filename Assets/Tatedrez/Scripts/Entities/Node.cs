@@ -13,6 +13,7 @@ namespace Tatedrez.Entities
         
         private readonly Dictionary<Vector2Int, Node> _neighbours = new();
         
+        public Piece Piece => _piece;
         public bool IsEmpty => _piece == null;
         public bool IsHighlighted => _highlight.activeSelf;
         

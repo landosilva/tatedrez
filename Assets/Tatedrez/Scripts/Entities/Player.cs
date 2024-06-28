@@ -51,6 +51,7 @@ namespace Tatedrez.Entities
                 if (!TryGetPiece(out Piece piece))
                     return;
                 
+                
                 piece.Follow(_finger);
                 _holdingPiece = piece;
             }

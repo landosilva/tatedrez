@@ -11,6 +11,9 @@ namespace Tatedrez.Entities
         [SerializeField] private SpriteRenderer _spriteRenderer;
         [SerializeField] private Movement _movement;
         [SerializeField] private Vector2Int _placementOffset;
+
+        [SerializeField] private GameObject _highlight;
+        [SerializeField] private Collider2D _collider;
         
         private Style _style;
         private Coroutine _followCoroutine;
@@ -66,6 +69,18 @@ namespace Tatedrez.Entities
             
             StopCoroutine(_followCoroutine);
             _followCoroutine = null;
+        }
+
+        public void Highlight()
+        {
+            _highlight.SetActive(value: true);
+            _collider.enabled = true;
+        }
+
+        public void Unhighlight()
+        {
+            _highlight.SetActive(value: false);
+            _collider.enabled = false;
         }
     }
 }

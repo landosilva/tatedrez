@@ -114,5 +114,11 @@ namespace Tatedrez.Entities
             
             destination.Place(piece);
         }
+
+        public bool ContainsPiece(Piece piece)
+        {
+            WorldToNode(piece.Position, out Node node, clamp: false);
+            return node && node.Piece == piece;
+        }
     }
 }

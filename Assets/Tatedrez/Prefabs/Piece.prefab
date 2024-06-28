@@ -319,6 +319,8 @@ MonoBehaviour:
   _spriteRenderer: {fileID: 8260575084486028941}
   _movement: {fileID: 11400000, guid: 5e32ae1cd43be456fa27ca40e40fb6ba, type: 2}
   _placementOffset: {x: 0, y: -5}
+  _highlight: {fileID: 7116220841817329255}
+  _collider: {fileID: 4082784272745962674}
   OnHeld:
     m_PersistentCalls:
       m_Calls: []
@@ -369,7 +371,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd940141e9aa4bf182287345a1fb8114, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _vfxPlace: {fileID: 8727013486674894987, guid: 6b4e6410e321d4bd2ab56ae24f2e1d81, type: 3}
 --- !u!1 &7116220841817329255
 GameObject:
   m_ObjectHideFlags: 0
