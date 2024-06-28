@@ -9,6 +9,7 @@ namespace Tatedrez.Entities
 
         private float _timer;
         
+        public Piece.Style Style => _style;
         public Piece[] Pieces => _pieces;
         
         public bool IsReady { get; private set; }
@@ -35,12 +36,5 @@ namespace Tatedrez.Entities
         {
             IsReady = ready;
         }
-
-#if UNITY_EDITOR
-        private void OnValidate()
-        {
-            SetStyle(_style);
-        }
-#endif
     }
 }

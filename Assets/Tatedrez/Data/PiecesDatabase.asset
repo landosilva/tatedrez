@@ -26,8 +26,8 @@ MonoBehaviour:
     _texture: {fileID: 2800000, guid: a59c4375ca8a146cf9fd488ae168bba3, type: 3}
     _sprites:
     - {fileID: 276912479, guid: a59c4375ca8a146cf9fd488ae168bba3, type: 3}
-    - {fileID: -466016941, guid: a59c4375ca8a146cf9fd488ae168bba3, type: 3}
     - {fileID: -1208097168, guid: a59c4375ca8a146cf9fd488ae168bba3, type: 3}
+    - {fileID: -466016941, guid: a59c4375ca8a146cf9fd488ae168bba3, type: 3}
     - {fileID: -1164925927, guid: a59c4375ca8a146cf9fd488ae168bba3, type: 3}
     - {fileID: -292022972, guid: a59c4375ca8a146cf9fd488ae168bba3, type: 3}
     - {fileID: 1972357586, guid: a59c4375ca8a146cf9fd488ae168bba3, type: 3}

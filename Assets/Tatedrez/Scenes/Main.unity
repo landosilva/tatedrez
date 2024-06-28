@@ -139,8 +139,16 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1208097168, guid: a59c4375ca8a146cf9fd488ae168bba3, type: 3}
+    - target: {fileID: 3816855246117609844, guid: c2f379fc48810442da07c975e71d2bd5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 4374366721660471720, guid: c2f379fc48810442da07c975e71d2bd5, type: 3}
       propertyPath: _style
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4618784776521624102, guid: c2f379fc48810442da07c975e71d2bd5, type: 3}
+      propertyPath: m_LocalPosition.x
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6506230475415101970, guid: c2f379fc48810442da07c975e71d2bd5, type: 3}
@@ -149,7 +157,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6506230475415101970, guid: c2f379fc48810442da07c975e71d2bd5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.5625
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 6506230475415101970, guid: c2f379fc48810442da07c975e71d2bd5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -649,11 +657,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db96d9a2b7f8418291dfe89c94dedb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerInputManager: {fileID: 1617873088}
   _playerSpots:
   - {fileID: 1093986390}
   - {fileID: 612827257}
-  _playerInputManager: {fileID: 1617873088}
   _board: {fileID: 556434932}
+  _winConditions: []
   _blackboard: {fileID: 1617873090}
   _stateMachine: {fileID: 1617873089}
 --- !u!114 &1617873088
@@ -765,37 +774,6 @@ Transform:
   - {fileID: 873569232}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1964545555
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1964545556}
-  m_Layer: 0
-  m_Name: Pieces
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1964545556
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1964545555}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7947179043312109240
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -811,7 +789,7 @@ PrefabInstance:
     - target: {fileID: 1194488237414293243, guid: c2f379fc48810442da07c975e71d2bd5, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -23450970, guid: 097a5e9b3df0343b2b1622fcd796cffc, type: 3}
+      objectReference: {fileID: -1035703797, guid: 097a5e9b3df0343b2b1622fcd796cffc, type: 3}
     - target: {fileID: 1194488237414293243, guid: c2f379fc48810442da07c975e71d2bd5, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -826,7 +804,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6506230475415101970, guid: c2f379fc48810442da07c975e71d2bd5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.25
+      value: -0.3125
       objectReference: {fileID: 0}
     - target: {fileID: 6506230475415101970, guid: c2f379fc48810442da07c975e71d2bd5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -871,7 +849,7 @@ PrefabInstance:
     - target: {fileID: 7872648234078199982, guid: c2f379fc48810442da07c975e71d2bd5, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1035703797, guid: 097a5e9b3df0343b2b1622fcd796cffc, type: 3}
+      objectReference: {fileID: -23450970, guid: 097a5e9b3df0343b2b1622fcd796cffc, type: 3}
     - target: {fileID: 7872648234078199982, guid: c2f379fc48810442da07c975e71d2bd5, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -888,4 +866,3 @@ SceneRoots:
   - {fileID: 977364511}
   - {fileID: 985462970}
   - {fileID: 1778464831}
-  - {fileID: 1964545556}

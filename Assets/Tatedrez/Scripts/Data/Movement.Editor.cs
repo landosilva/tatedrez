@@ -6,20 +6,18 @@ using UnityEngine;
 
 namespace Tatedrez.Data
 {
-    public partial class Movement
+    public partial class Strategy
     {
-        [SerializeField] private int _range = 1;
-
-        [CustomEditor(typeof(Movement)), CanEditMultipleObjects]
+        [CustomEditor(typeof(Strategy)), CanEditMultipleObjects]
         public class MovementEditor : Editor
         {
-            private Movement _movement;
+            private Strategy _strategy;
             private Color _originalBackgroundColor;
             private Color _originalContentColor;
 
             private void OnEnable()
             {
-                _movement = (Movement)target;
+                _strategy = (Strategy)target;
             }
 
             public override void OnInspectorGUI()
@@ -32,11 +30,8 @@ namespace Tatedrez.Data
                 EditorGUILayout.Space();
                 DrawButtons();
 
-                string info = _movement.IsDirectional ? "Directional movement" : "Definitive movement";
-                EditorGUILayout.HelpBox(info, MessageType.Info);
-
                 if (GUI.changed)
-                    EditorUtility.SetDirty(_movement);
+                    EditorUtility.SetDirty(_strategy);
             }
 
             private void DrawButtons()
@@ -45,17 +40,29 @@ namespace Tatedrez.Data
 
                 GUILayoutOption[] options = { GUILayout.ExpandWidth(true), GUILayout.Height(32) };
                 if (GUILayout.Button(text: "Increase Range", options))
-                    _movement._range++;
+                    _strategy._range++;
 
                 if (GUILayout.Button(text: "Decrease Range", options))
-                    _movement._range = Mathf.Max(1, _movement._range - 1);
+                    _strategy._range = Mathf.Max(1, _strategy._range - 1);
 
                 EditorGUILayout.EndHorizontal();
+                
+                string label = _strategy._isDirectional 
+                    ? "Set as definitive movement" 
+                    : "Set as directional movement";
+                if (GUILayout.Button(text: label, options))
+                    _strategy._isDirectional = !_strategy._isDirectional;
+                
+                string label2 = _strategy._disableOrigin 
+                    ? "Enable origin" 
+                    : "Disable origin";
+                if (GUILayout.Button(text: label2, options))
+                    _strategy._disableOrigin = !_strategy._disableOrigin;
             }
 
             private void DrawGrid()
             {
-                int range = _movement._range;
+                int range = _strategy._range;
 
                 GUILayout.BeginHorizontal();
                 GUILayout.FlexibleSpace();
@@ -89,13 +96,13 @@ namespace Tatedrez.Data
                 Vector2Int position = new(x, y);
                 bool isOrigin = position == Vector2Int.zero;
 
-                Vector2Int data = _movement._positions.FirstOrDefault(Match);
-                bool isSelected = data != Vector2Int.zero;
+                Vector2Int data =  _strategy._positions.FirstOrDefault(Match);
+                bool isSelected = _strategy._positions.Contains(position);
                 
                 Color color = GetColor();
                 GUIStyle buttonStyle = GetButtonStyle();
                     
-                if (isOrigin)
+                if (isOrigin && _strategy._disableOrigin)
                     DrawOrigin();
                 else
                     DrawButton();
@@ -106,7 +113,7 @@ namespace Tatedrez.Data
 
                 Color GetColor()
                 {
-                    Color c = isOrigin
+                    Color c = isOrigin && _strategy._disableOrigin
                         ? Color.clear
                         : isSelected 
                             ? Color.green.WithAlpha(alpha) 
@@ -144,17 +151,17 @@ namespace Tatedrez.Data
                         return;
                         
                     if (isSelected)
-                        _movement._positions.Remove(data);
+                        _strategy._positions.Remove(data);
                     else
                     {
                         Vector2Int newMovement = new(x, y);
-                        _movement._positions.Add(newMovement);
+                        _strategy._positions.Add(newMovement);
                     }
                 }
                 
                 string GetArrow()
                 {
-                    if (position == Vector2Int.zero || !_movement.IsDirectional)
+                    if (position == Vector2Int.zero || !_strategy._isDirectional)
                         return string.Empty;
                     
                     if (position.y == 0)

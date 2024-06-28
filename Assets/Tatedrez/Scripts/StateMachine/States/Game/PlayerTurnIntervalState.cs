@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using Tatedrez.Data;
 using Tatedrez.Entities;
 using Tatedrez.Managers;
 using UnityEngine;
@@ -11,6 +14,8 @@ namespace Tatedrez.StateMachine.States.Game
         
         private float _enterTime;
         
+        private bool IntervalEnded => Time.time - _enterTime >= _duration;
+        
         protected override void OnEnter()
         {
             base.OnEnter();
@@ -20,23 +25,50 @@ namespace Tatedrez.StateMachine.States.Game
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
             base.OnStateUpdate(animator, stateInfo, layerIndex);
-            bool intervalEnded = Time.time - _enterTime >= _duration;
-            if (!intervalEnded)
+            if (!IntervalEnded)
                 return;
             
-            _stateMachine.SetTrigger(name: GameManager.Triggers.Turn.Ended);
+            CheckBoard();
         }
 
-        protected override void OnExit()
+        private void CheckBoard()
         {
-            base.OnExit();
+            Board board = _blackboard.Get<Board>();
+            Strategy[] winConditions = _blackboard.Get<Strategy[]>();
+
+            foreach (Strategy condition in winConditions)
+            {
+                IEnumerable<Node> nodes = condition.GetNodes(board).Where(HavePiece);
+                if(nodes.Count() < condition.Count)
+                    continue;
+                
+                Piece.Style style = nodes.ElementAt(0).Piece.GetStyle();
+
+                if (nodes.All(HaveSameStyle))
+                {
+                    _stateMachine.SetBool(name: GameManager.States.Over, true);
+                    return;
+                }
+                
+                continue;
+
+                bool HavePiece(Node node) => !node.IsEmpty;
+                bool HaveSameStyle(Node node) => node.Piece.GetStyle() == style;
+            }
             
+            SetNextPlayer();
+        }
+        
+        private void SetNextPlayer()
+        {
             PlayerSpot[] playerSpots = _blackboard.Get<PlayerSpot[]>();
             PlayerSpot currentPlayer = _blackboard.Get<PlayerSpot>(key: GameManager.Variables.Player.Current);
             int playerIndex = Array.IndexOf(playerSpots, currentPlayer);
             int nextPlayerIndex = (playerIndex + 1) % playerSpots.Length;
             PlayerSpot nextPlayer = playerSpots[nextPlayerIndex];
+            
             _blackboard.Set(GameManager.Variables.Player.Current, nextPlayer);
+            _stateMachine.SetTrigger(name: GameManager.Triggers.Turn.Ended);
         }
     }
 }

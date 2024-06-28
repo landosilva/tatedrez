@@ -10,9 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6712ddd015b44493a88465fb16fad11b, type: 3}
-  m_Name: None
+  m_Name: Column03
   m_EditorClassIdentifier: 
-  _positions: []
+  _positions:
+  - {x: 1, y: 1}
+  - {x: 1, y: 0}
+  - {x: 1, y: -1}
   _range: 1
   _isDirectional: 0
-  _disableOrigin: 1
+  _disableOrigin: 0

@@ -1,17 +1,39 @@
 using System.Collections.Generic;
+using System.Linq;
+using Lando.Core.Extensions;
 using Tatedrez.Entities;
 using UnityEngine;
 
 namespace Tatedrez.Data
 {
-    [CreateAssetMenu(fileName = "Movement", menuName = "Tatedrez/Movement")]
-    public partial class Movement : ScriptableObject
+    [CreateAssetMenu(fileName = "Strategy", menuName = "Tatedrez/Strategy")]
+    public partial class Strategy : ScriptableObject
     {   
         [SerializeField] private List<Vector2Int> _positions;
         
-        private bool IsDirectional => _range <= 1;
+        [SerializeField] private int _range = 1;
+        [SerializeField] private bool _isDirectional = true;
+        [SerializeField] private bool _disableOrigin = true;
         
-        public List<Node> GetNodes(Board board, Node origin)
+        private bool IsDirectional => _isDirectional;
+        public int Count => _positions.Count;
+
+        public List<Node> GetNodes(Board board)
+        {
+            List<Node> nodes = new();
+
+            foreach (Vector2Int index in _positions.Select(AsAbsolute))
+            {
+                board.TryGetNode(index, out Node node);
+                nodes.Add(node);
+            }
+            
+            return nodes;
+
+            Vector2Int AsAbsolute(Vector2Int position) => position.Add(other: Vector2Int.one * _range).ToInt();
+        }
+        
+        public List<Node> GetMovement(Board board, Node origin)
         {
             List<Node> nodes = new();
             

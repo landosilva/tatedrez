@@ -89,7 +89,7 @@ namespace Tatedrez.Entities
             if (!placed)
                 toHighlight.AddRange(collection: _map.Values);
             else
-                toHighlight.AddRange(collection: piece.Movement.GetNodes(board: this, originNode));
+                toHighlight.AddRange(collection: piece.Movement.GetMovement(board: this, originNode));
             
             foreach (Node node in toHighlight)
                 node.Highlight();

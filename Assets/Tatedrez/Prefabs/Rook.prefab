@@ -96,6 +96,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rook
       objectReference: {fileID: 0}
+    - target: {fileID: 7116220841817329255, guid: 2c4b786b8d52b40c196aa60782b8377a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8260575084486028941, guid: 2c4b786b8d52b40c196aa60782b8377a, type: 3}
       propertyPath: m_Sprite
       value: 

@@ -9,7 +9,7 @@ namespace Tatedrez.Entities
     {   
         [SerializeField] private Type _type;
         [SerializeField] private SpriteRenderer _spriteRenderer;
-        [SerializeField] private Movement _movement;
+        [SerializeField] private Strategy _movement;
         [SerializeField] private Vector2Int _placementOffset;
 
         [SerializeField] private GameObject _highlight;
@@ -18,7 +18,7 @@ namespace Tatedrez.Entities
         private Style _style;
         private Coroutine _followCoroutine;
         
-        public Movement Movement => _movement;
+        public Strategy Movement => _movement;
         
         public Vector3 Position => transform.position;
         public Vector3 View => _spriteRenderer.transform.position;
@@ -29,6 +29,8 @@ namespace Tatedrez.Entities
             _style = style;
             _spriteRenderer.sprite = PiecesDatabase.GetSprite(style, _type);
         }
+        
+        public Style GetStyle() => _style;
         
         public void Follow(Transform target)
         {
