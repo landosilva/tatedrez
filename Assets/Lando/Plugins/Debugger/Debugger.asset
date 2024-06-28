@@ -29,9 +29,3 @@ MonoBehaviour:
   - <Name>k__BackingField: '[GameState.OnStateExit]'
     <Color>k__BackingField: {r: 0.24000001, g: 0.44915327, b: 0.8, a: 1}
     <Enabled>k__BackingField: 0
-  - <Name>k__BackingField: '[GameManager.GameOver]'
-    <Color>k__BackingField: {r: 0.6673038, g: 0.8, b: 0.24000001, a: 1}
-    <Enabled>k__BackingField: 1
-  - <Name>k__BackingField: '[GameOverState.OnEnter]'
-    <Color>k__BackingField: {r: 0.24000001, g: 0.8, b: 0.7329213, a: 1}
-    <Enabled>k__BackingField: 1
