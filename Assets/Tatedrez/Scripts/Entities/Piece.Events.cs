@@ -7,38 +7,47 @@ namespace Tatedrez.Entities
 {   
     public partial class Piece
     {
-        public class HoldEvent : IEvent
+        public class Events
         {
-            public Piece Piece { get; }
+            public class Hold : IEvent
+            {
+                public Piece Piece { get; }
             
-            public HoldEvent(Piece piece) => Piece = piece;
-        }
+                public Hold(Piece piece) => Piece = piece;
+            }
         
-        public class ReleaseEvent : IEvent
-        {
-            public Piece Piece { get; }
+            public class Release : IEvent
+            {
+                public Piece Piece { get; }
             
-            public ReleaseEvent(Piece piece) => Piece = piece;
+                public Release(Piece piece) => Piece = piece;
+            }
         }
         
         public UnityEvent OnHeld;
         public UnityEvent<Vector3> OnReleased;
 
-        private void Awake()
+        private void SubscribeEvents()
         {
             OnHeld.AddListener(NotifyHold);
             OnReleased.AddListener(NotifyRelease);
         }
+        
+        private void UnsubscribeEvents()
+        {
+            OnHeld.RemoveListener(NotifyHold);
+            OnReleased.RemoveListener(NotifyRelease);
+        }
 
         private void NotifyHold()
         { 
-            HoldEvent onHoldEvent = new(piece: this);
+            Events.Hold onHoldEvent = new(piece: this);
             Event.Raise(onHoldEvent);
         }
         
         private void NotifyRelease(Vector3 released)
         {
-            ReleaseEvent onReleaseEvent = new(piece: this);
+            Events.Release onReleaseEvent = new(piece: this);
             Event.Raise(onReleaseEvent);
         }
     }

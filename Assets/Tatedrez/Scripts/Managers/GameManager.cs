@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 
 namespace Tatedrez.Managers
 {   
-    public class GameManager : MonoBehaviour
+    public partial class GameManager : MonoBehaviour
     {   
         [Header("Players")]
         [SerializeField] private PlayerInputManager _playerInputManager;
@@ -24,10 +24,42 @@ namespace Tatedrez.Managers
 
         private void Awake()
         {
+            InitializeBlackboard();
+            SubscribeEvents();
+        }
+
+        private void OnDestroy()
+        {
+            UnsubscribeEvents();
+        }
+
+        private void InitializeBlackboard()
+        {
+            _blackboard.Set(this);
             _blackboard.Set(_playerInputManager);
             _blackboard.Set(_playerSpots);
             _blackboard.Set(_board);
             _blackboard.Set(_winConditions);
+        }
+
+        public void StartGame()
+        {
+            foreach (PlayerSpot playerSpot in _playerSpots)
+            {
+                playerSpot.Reset();
+                _board.Reset();
+            }
+            
+            _stateMachine.SetBool(name: States.Started, true);
+            
+            NotifyStarted();
+        }
+        
+        public void GameOver(PlayerSpot winner)
+        {
+            _stateMachine.SetBool(name: States.Over, true);
+            
+            NotifyOver(winner);
         }
         
         [UsedImplicitly]
@@ -65,6 +97,7 @@ namespace Tatedrez.Managers
         public static class States
         {
             public static readonly string Bootstrapped = "Bootstrapped";
+            public static readonly string Started = "Started";
             public static readonly string Over = "GameOver";
         }
         

@@ -67,17 +67,17 @@ namespace Tatedrez.Entities
         
         private void SubscribeEvents()
         {
-            Event.Subscribe<Piece.HoldEvent>(OnPieceHold);
-            Event.Subscribe<Piece.ReleaseEvent>(OnPieceRelease);
+            Event.Subscribe<Piece.Events.Hold>(OnPieceHold);
+            Event.Subscribe<Piece.Events.Release>(OnPieceRelease);
         }
         
         private void UnsubscribeEvents()
         {
-            Event.Unsubscribe<Piece.HoldEvent>(OnPieceHold);
-            Event.Unsubscribe<Piece.ReleaseEvent>(OnPieceRelease);
+            Event.Unsubscribe<Piece.Events.Hold>(OnPieceHold);
+            Event.Unsubscribe<Piece.Events.Release>(OnPieceRelease);
         }
 
-        private void OnPieceHold(Piece.HoldEvent e)
+        private void OnPieceHold(Piece.Events.Hold e)
         {
             Piece piece = e.Piece;
             
@@ -95,7 +95,7 @@ namespace Tatedrez.Entities
                 node.Highlight();
         }
         
-        private void OnPieceRelease(Piece.ReleaseEvent e)
+        private void OnPieceRelease(Piece.Events.Release e)
         {
             Piece piece = e.Piece;
 
@@ -119,6 +119,12 @@ namespace Tatedrez.Entities
         {
             WorldToNode(piece.Position, out Node node, clamp: false);
             return node && node.Piece == piece;
+        }
+
+        public void Reset()
+        {
+            foreach (Node node in _map.Values)
+                node.Clear();
         }
     }
 }

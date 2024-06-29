@@ -36,5 +36,13 @@ namespace Tatedrez.Entities
         {
             IsReady = ready;
         }
+
+        public void Reset()
+        {
+            foreach (Piece piece in _pieces)
+                piece.Reset();
+            
+            SetReady(false);
+        }
     }
 }

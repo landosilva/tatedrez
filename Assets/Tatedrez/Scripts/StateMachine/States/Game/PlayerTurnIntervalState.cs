@@ -46,7 +46,9 @@ namespace Tatedrez.StateMachine.States.Game
 
                 if (nodes.All(HaveSameStyle))
                 {
-                    _stateMachine.SetBool(name: GameManager.States.Over, true);
+                    PlayerSpot winner = _blackboard.Get<PlayerSpot>(key: GameManager.Variables.Player.Current);
+                    GameManager gameManager = _blackboard.Get<GameManager>();
+                    gameManager.GameOver(winner);
                     return;
                 }
                 

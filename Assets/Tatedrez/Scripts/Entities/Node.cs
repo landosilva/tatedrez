@@ -9,12 +9,10 @@ namespace Tatedrez.Entities
         [SerializeField] private GameObject _highlight;
         [SerializeField] private GameObject _vfxPlace;
 
-        private Piece _piece;
-        
         private readonly Dictionary<Vector2Int, Node> _neighbours = new();
         
-        public Piece Piece => _piece;
-        public bool IsEmpty => _piece == null;
+        public Piece Piece { get; private set; }
+        public bool IsEmpty => Piece == null;
         public bool IsHighlighted => _highlight.activeSelf;
         
         public Vector2Int Index { get; private set; }
@@ -34,8 +32,8 @@ namespace Tatedrez.Entities
         {
             Vector3 offset = piece.PlacementOffset.ToUnits();
             Vector3 destination = transform.position + offset;
-            _piece = piece;
-            _piece.transform.position = destination;
+            Piece = piece;
+            Piece.transform.position = destination;
             
             GameObject vfx = Instantiate(_vfxPlace, transform.position, Quaternion.identity);
             Destroy(vfx, t: 2);
@@ -43,7 +41,7 @@ namespace Tatedrez.Entities
         
         public void Clear()
         {
-            _piece = null;
+            Piece = null;
         }
         
         public void Highlight()

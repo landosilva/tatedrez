@@ -1,18 +1,18 @@
 fileFormatVersion: 2
-guid: c1b7beb4b18724dc2b9ab0d060e05262
+guid: 2751d0827e90e4e2fbbc05c436d6b8b4
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
   fontSize: 16
-  forceTextureCase: -2
+  forceTextureCase: -1
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Retro Computer
+  - Pixel UniCode
   fallbackFontReferences: []
   customCharacters: 
-  fontRenderingMode: 0
+  fontRenderingMode: 2
   ascentCalculationMode: 1
   useLegacyBoundsCalculation: 0
   shouldRoundAdvanceValue: 1

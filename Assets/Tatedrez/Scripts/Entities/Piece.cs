@@ -17,12 +17,24 @@ namespace Tatedrez.Entities
         
         private Style _style;
         private Coroutine _followCoroutine;
+        private Vector3 _origin;
         
         public Strategy Movement => _movement;
         
         public Vector3 Position => transform.position;
         public Vector3 View => _spriteRenderer.transform.position;
         public Vector2Int PlacementOffset => _placementOffset;
+        
+        private void Awake()
+        {
+            _origin = transform.position;
+            SubscribeEvents();
+        }
+        
+        private void OnDestroy()
+        {
+            UnsubscribeEvents();
+        }
 
         public void SetStyle(Style style)
         {
@@ -83,6 +95,15 @@ namespace Tatedrez.Entities
         {
             _highlight.SetActive(value: false);
             _collider.enabled = false;
+        }
+
+        public void Reset()
+        {
+            transform.position = _origin;
+            _spriteRenderer.transform.localPosition = Vector3.zero;
+            
+            StopFollowing();
+            Unhighlight();
         }
     }
 }
