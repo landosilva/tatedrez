@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Tatedrez.Entities;
 using Tatedrez.Managers;
@@ -21,7 +22,7 @@ namespace Tatedrez.StateMachine.States.Game
             PlayerSpot playerSpot = _blackboard.Get<PlayerSpot>(key: GameManager.Variables.Player.Current);
             Board board = _blackboard.Get<Board>();
 
-            if (playerSpot.Pieces.All(PlacedOnBoard))
+            if (playerSpot.Pieces.All(PlacedOnBoard)) 
                 playerSpot.SetReady(true);
             
             return;
@@ -33,16 +34,26 @@ namespace Tatedrez.StateMachine.States.Game
         {
             PlayerSpot playerSpot = _blackboard.Get<PlayerSpot>(key: GameManager.Variables.Player.Current);
             Board board = _blackboard.Get<Board>();
+            bool skipTurn = true;
             foreach (Piece piece in playerSpot.Pieces)
             {
                 if(!playerSpot.IsReady && board.ContainsPiece(piece))
                     continue;
+                
+                bool canMove = board.TryGetPieceMovement(piece, out List<Node> _);
+                if (!canMove)
+                    continue;
+                
+                skipTurn = false;
                 
                 piece.Highlight();
                 
                 piece.OnHeld.AddListener(OnPieceHeld);
                 piece.OnReleased.AddListener(OnPieceReleased);
             }
+            
+            if (skipTurn)
+                _blackboard.Get<GameManager>().PassTurn();
         }
         
         private void RemoveListeners()
@@ -69,7 +80,7 @@ namespace Tatedrez.StateMachine.States.Game
         
         private void OnPieceReleased(Vector3 position)
         {
-            _stateMachine.SetTrigger(name: GameManager.Triggers.Turn.Ended);
+            _blackboard.Get<GameManager>().PassTurn();
         }
     }
 }

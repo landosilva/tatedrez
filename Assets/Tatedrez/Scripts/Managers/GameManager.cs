@@ -55,6 +55,11 @@ namespace Tatedrez.Managers
             NotifyStarted();
         }
         
+        public void PassTurn()
+        {
+            _stateMachine.SetTrigger(name: Triggers.Turn.Ended);
+        }
+        
         public void GameOver(PlayerSpot winner)
         {
             _stateMachine.SetBool(name: States.Over, true);

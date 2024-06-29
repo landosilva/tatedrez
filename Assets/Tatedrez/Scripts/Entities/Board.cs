@@ -77,19 +77,23 @@ namespace Tatedrez.Entities
             Event.Unsubscribe<Piece.Events.Release>(OnPieceRelease);
         }
 
+        public bool TryGetPieceMovement(Piece piece, out List<Node> result)
+        {
+            WorldToIndex(piece.Position, out Vector2Int index, clamp: false);
+            bool placed = TryGetNode(index, out Node originNode);
+            
+            result = placed
+                ? piece.Movement.GetMovement(board: this, originNode)
+                : new List<Node>(_map.Values);
+            
+            return result.Count > 0;
+        }
+
         private void OnPieceHold(Piece.Events.Hold e)
         {
             Piece piece = e.Piece;
             
-            WorldToIndex(piece.Position, out Vector2Int index, clamp: false);
-            bool placed = TryGetNode(index, out Node originNode);
-            
-            List<Node> toHighlight = new();
-            
-            if (!placed)
-                toHighlight.AddRange(collection: _map.Values);
-            else
-                toHighlight.AddRange(collection: piece.Movement.GetMovement(board: this, originNode));
+            TryGetPieceMovement(piece, out List<Node> toHighlight);
             
             foreach (Node node in toHighlight)
                 node.Highlight();
