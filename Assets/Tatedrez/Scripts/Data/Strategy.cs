@@ -13,7 +13,10 @@ namespace Tatedrez.Data
         
         [SerializeField] private int _range = 1;
         [SerializeField] private bool _isDirectional = true;
+        
+#if UNITY_EDITOR
         [SerializeField] private bool _disableOrigin = true;
+#endif
         
         private bool IsDirectional => _isDirectional;
         public int Count => _positions.Count;

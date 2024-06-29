@@ -9,8 +9,8 @@ namespace Tatedrez.Data
     public partial class Strategy
     {
         [CustomEditor(typeof(Strategy)), CanEditMultipleObjects]
-        public class MovementEditor : Editor
-        {
+        public class StrategyEditor : Editor
+        {   
             private Strategy _strategy;
             private Color _originalBackgroundColor;
             private Color _originalContentColor;
