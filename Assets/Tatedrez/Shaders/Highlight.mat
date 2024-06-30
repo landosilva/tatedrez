@@ -50,7 +50,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Highlight_Angle: 45
-    - _Highlight_Position: 0
+    - _Highlight_Position: 0.279
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors: []
