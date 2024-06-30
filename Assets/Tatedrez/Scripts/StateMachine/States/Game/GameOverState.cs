@@ -1,4 +1,5 @@
 using Lando.Plugins.Debugger;
+using Lando.Plugins.Sound;
 using Tatedrez.Entities;
 using Tatedrez.Managers;
 using UnityEngine;
@@ -15,6 +16,8 @@ namespace Tatedrez.StateMachine.States.Game
             Debugger.Log($"Player with {winner.Style.ToString()}s is the winner!");
             
             CameraManager.ZoomOut();
+            
+            SoundManager.PlaySFX(SoundDatabase.Game.GameOver);
         }
 
         public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

@@ -139,6 +139,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1208097168, guid: a59c4375ca8a146cf9fd488ae168bba3, type: 3}
+    - target: {fileID: 1194488237414293243, guid: c2f379fc48810442da07c975e71d2bd5, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3816855246117609844, guid: c2f379fc48810442da07c975e71d2bd5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1
@@ -195,10 +199,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1164925927, guid: a59c4375ca8a146cf9fd488ae168bba3, type: 3}
+    - target: {fileID: 7238029446795924905, guid: c2f379fc48810442da07c975e71d2bd5, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7872648234078199982, guid: c2f379fc48810442da07c975e71d2bd5, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -466016941, guid: a59c4375ca8a146cf9fd488ae168bba3, type: 3}
+    - target: {fileID: 7872648234078199982, guid: c2f379fc48810442da07c975e71d2bd5, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -375,7 +387,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 96
+    m_Bits: 224
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -827,6 +839,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1617873086}
+  - {fileID: 1743680502}
   - {fileID: 556434931}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1198,6 +1211,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eb901f646b2407ba77ae0b37d274f59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1743680501
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1743680502}
+  - component: {fileID: 1743680503}
+  m_Layer: 0
+  m_Name: Sound Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1743680502
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743680501}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 977364511}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1743680503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1743680501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b1b988b3036040749ca32736c315c18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sfxSourceAmount: 4
 --- !u!1 &1778464830
 GameObject:
   m_ObjectHideFlags: 0

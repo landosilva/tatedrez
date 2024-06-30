@@ -1,7 +1,7 @@
 using Lando.Core.Extensions;
+using Lando.Plugins.Sound;
 using Tatedrez.Entities;
 using Tatedrez.Managers;
-using Tatedrez.States;
 using UnityEngine.InputSystem;
 
 namespace Tatedrez.StateMachine.States.Game
@@ -31,6 +31,9 @@ namespace Tatedrez.StateMachine.States.Game
             _blackboard.Set(GameManager.Variables.Player.Current, initialPlayer);
             
             _stateMachine.SetBool(name: GameManager.States.Bootstrapped, true);
+            
+            SoundManager.PlayMusic(SoundDatabase.Music.Background);
+            SoundManager.SetMusicLayerVolume(0, volume: 0.2f);
         }
     }
 }

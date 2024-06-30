@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Lando.Plugins.Sound;
 using Tatedrez.Entities;
 using Tatedrez.Managers;
 using UnityEngine;
@@ -12,6 +13,8 @@ namespace Tatedrez.StateMachine.States.Game
         {
             base.OnEnter();
             AddListeners();
+            
+            SoundManager.PlaySFX(SoundDatabase.Game.TurnStart);
         }
         
         protected override void OnExit()

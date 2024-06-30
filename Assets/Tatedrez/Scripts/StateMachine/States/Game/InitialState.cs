@@ -18,7 +18,12 @@ namespace Tatedrez.StateMachine.States.Game
         {
             base.OnStateUpdate(animator, stateInfo, layerIndex);
 
-            if (!Touchscreen.current.primaryTouch.isInProgress)
+            if (Touchscreen.current == null)
+            {
+                if (!Mouse.current.leftButton.wasPressedThisFrame)
+                    return;
+            }
+            else if (!Touchscreen.current.primaryTouch.isInProgress)
                 return;
             
             GameManager gameManager = _blackboard.Get<GameManager>();

@@ -8,6 +8,7 @@ namespace Tatedrez
         private static void Initialize()
         {
             Application.targetFrameRate = 300;
+            Screen.sleepTimeout = SleepTimeout.NeverSleep;
         }
     }
 }

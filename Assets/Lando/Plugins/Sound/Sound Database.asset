@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fbefc3d41c641cfbda683d214d4e7d0, type: 3}
+  m_Name: Sound Database
+  m_EditorClassIdentifier: 
+  _categories:
+  - _name: Music
+    _audios:
+    - _name: Background
+      _loop: 1
+      _clips:
+      - {fileID: 8300000, guid: 448b66785f7894725b9377057233f6a9, type: 3}
+  - _name: Piece
+    _audios:
+    - _name: Hold
+      _loop: 0
+      _clips:
+      - {fileID: 8300000, guid: 6022822cb9bb74a05a6636ed0e18e296, type: 3}
+    - _name: Place
+      _loop: 0
+      _clips:
+      - {fileID: 8300000, guid: 223b50642150e47b09ef2255116d8e57, type: 3}
+  - _name: Game
+    _audios:
+    - _name: Turn Start
+      _loop: 0
+      _clips:
+      - {fileID: 8300000, guid: 2f3419d402fb046939414698ced57c69, type: 3}
+    - _name: Game Over
+      _loop: 0
+      _clips:
+      - {fileID: 8300000, guid: 5fab019d44bec49099681630053861a9, type: 3}
+  _filePath: /Users/landosilva/Documents/git/tatedrez-game/Assets/Lando/Plugins/Sound

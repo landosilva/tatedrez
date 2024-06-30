@@ -30,7 +30,7 @@ namespace Tatedrez.UI
         
         private void OnGameOver(GameManager.Events.Over e)
         {
-            _title.SetText($"{e.Winner.Style.ToString()}s won!");
+            _title.SetText($"\n{e.Winner.Style.ToString()}s won!");
             _title.gameObject.SetActive(true);
 
             _message.text = "Tap to restart";

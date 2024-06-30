@@ -13,6 +13,9 @@ namespace Lando.Core.Extensions
         public static string ReplaceWhitespace(this string input, string replacement = "") 
             => _whitespaceRegex.Replace(input, replacement);
         
+        public static bool IsNullOrEmpty(this string text) 
+            => string.IsNullOrEmpty(text);
+        
         public static string ToColor(this string text, Color color) 
             => $"<color=#{ColorUtility.ToHtmlStringRGB(color)}>{text}</color>";
         
