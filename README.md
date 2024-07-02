@@ -1,68 +1,93 @@
-# Tatedrez-game
+# ♟️♟️♟️ **TaTeDrez** ♟️♟️♟️
 
-Create a tateDrez game using good coding practices, take into account the mantainance, scalability and readability of the code.
-You should use the best practices at your disposal in order to guarantee the best and easier code re-usability.
+First and foremost, thank you Homa for this opportunity. It was a quite fun challenge and I actually had a lot of fun both developing and playing the result with my friends.
+I apologise for the little delay in delivering it but please evaluate my submission as I would love to hear back from you.
 
-Explain on a separated text document your implementation choices for the different systems or modules implemented.
-Juicyness and attractiveness of the gameplay and UI will be valorated too.
 
-The game must be buildable and runnable on iOS or Android at 60fps without crashes or errors.
+https://i.diawi.com/rQkF4N
+
+## 🎨 Art Choices
+### 💡 Inspiration
+Every time I start a new project I like to explore it visually first. I would say it has a lot of benefits, such as:
+* Inspiration;
+* Stimulation of creativity;
+* Warming up my brain cells;
+* Putting things in place gives me a clear vision of what I need to develop, thus being more productive in the long run.
+
+That said, I went to the play store in search for chess games with interesting art styles and I found this one that I liked very much:
+
+--image
+
+### 🌅 Chosen Assets
+Even though I didn't go trough with 3D environment, seeing and playing this game made the kick off for me and I went in the search of free art assets in places that I'm already familiar with.
+I ended up using this 2D pixel art by ---, which can be found through this link: ---
+
+After that, I searched for some simple UI and Misc elements that I could benefit from I liked this set by --- which can be found through this link: ---
+
+Having all these setup, I did some little adjustments on the images to fit our needs and ended up with this scene:
+
+--image
+
+With that in place, I felt inspired and could start doing some actual code.
+
+---
+
+## 🧑‍💻 Technical Choices
+
+### 📱 Player & Input
+The very first thing that I did was deciding how would the player interact with the pieces and I went with the last Unity's Input System.
+
+### ♟️ Piece Movement & Placement
+Lorem Ipsum
+
+#### Strategy Pattern
+Lorem Ipsum
+
+#### Animator State Machine Exploration
+I was about to develop my own simple State Machine module for this test as well but then I remembered about StateMachineBehaviour and decided to play with it and use Animator Controller and Animation States to function as State Machine and States, respectively. Well, in the end, they are not call like it, but they are exactly that.
+In other for that to work, I did GameState inheriting from it with the only job of storing what I called Blackboard, a very flexible place to store information about the object running the State Machine. It can be either by Key or, if not specified, the Key will be the stored object's type and will function similar to MonoBehaviour's GetComponent.
+I have to say that the results were not bad, but next time I would go with a proper developed FSM.
+
+#### Win Condition
+Lorem Ipsum
+
+### 🧃 Juice
+Lorem Ipsum
+
+#### Particle VFX & DOTween
+Lorem Ipsum
+
+#### Sounds
+Victor is awesome
 
 ---
 
-# GAME DESCRIPTION AND RULES:
-Here's a step-by-step description of how a game of Tateddrez would unfold:  
+## ⚙️ Modules
+As I mentioned, I didn't use any external tool except of DOTween. But I do did some reusable code and implementation of modules that could be exported as a package and used in any other project.
 
-* **Pieces:**
-    The game has only 3 pieces. Knight, Bishop and Rook:
-    * Knight (Horse): The knight moves in an L-shape: two squares in one direction (either horizontally or vertically), followed by one square perpendicular to the previous direction. Knights can jump over other pieces on the board, making their movement unique. Knights can move to any square on the board that follows this L-shaped pattern, regardless of the color of the squares.
-    * Rook: The rook moves in straight lines either horizontally or vertically. It can move any number of squares in the chosen direction, as long as there are no pieces blocking its path.
-    * Bishop: The bishop moves diagonally on the board. It can move any number of squares diagonally in a single move, as long as there are no pieces obstructing its path.
+### ⚙️ Singletons
+I know, I know. Singletons are not the cool kids in the park and a more robust solution would be Service Locators or Dependency Injection, but I do like to use them, specially for prototyping and simple projects like this. They are just, as any other solution or design pattern, a tool. Every tool can be misused, but also, every tool was created to solve a problem. And I believe Singletons are injusticied.
 
-* **Board Setup:**
-    An empty board is placed, consisting of a 3x3 grid, similar to a Tic Tac Toe game.
+#### Mono Behaviour
+I did a very simple implementation of a MonoBehaviour Singleton, which can be persistent across scenes or not.
 
-  <img width="320" alt="image" src="https://github.com/juanblasco/tatedrez-game/assets/129755869/69e58f89-c8e0-407c-9003-0ce5a6bb0beb">
+#### Scriptable Objects
+I also did a version for Scriptable Objects and actually I do believe having it is a very good way to store some types of data.
 
-* **Piece Placement:**
-    Choose a random player to start.  
-    Player 1 places one of their pieces in an empty square on the board.  
-    Player 2 places one of their pieces in another empty square on the board.  
-    They continue alternating until both players have placed their three pieces on the board.
+### ⚙️ Events
+Just a basic and standard Event Bus pattern.
 
-  <img width="321" alt="image" src="https://github.com/juanblasco/tatedrez-game/assets/129755869/85ec3c00-6cd7-467e-b853-37f28698829a">
-  
+### ⚙️ Generators
+#### Layers and Layer Masks
+Lorem Ipsum
 
-* **Checking for TicTacToe:**
-    After all players have placed their three pieces on the board, it's checked whether anyone has managed to create a line of three pieces in a row, column, or diagonal – a TicTacToe.
+### ⚙️ Debugger
+Lorem Ipsum
 
-* **Dynamic Mode:**
-    If neither player has achieved a TicTacToe with the placed pieces, the game enters the dynamic mode of Tateddrez.
-    If X player can't move, the other player move twice.
-    In this mode, players take turns to move one of their pieces following chess rules.
-    **Capturing opponent's pieces is not allowed.**
-
-* **Seeking TicTacToe:**
-    In dynamic mode, players strategically move their pieces to form a TicTacToe.  
-    They continue moving their pieces in turns until one of them achieves a TicTacToe with their three pieces.
-
-  <img width="321" alt="image" src="https://github.com/juanblasco/tatedrez-game/assets/129755869/2d3e69f8-89ae-4890-b19a-aadb9838cfda">
-
-
-* **Game Conclusion:**
-    The game of Tateddrez concludes when one of the players manages to achieve a TicTacToe with their three pieces, either during the initial placement phase or during dynamic mode.  
-    The player who achieves the TicTacToe is declared the winner.
-
-  <img width="317" alt="image" src="https://github.com/juanblasco/tatedrez-game/assets/129755869/9561dd1b-d760-47ec-8bc9-41086e1960db">
-
+### ⚙️ Sound Database
+Lorem Ipsum
 
 ---
-# Tech requirements
-* Use Unity 2022.3.21
-* Please use only free assets. No paid assets or plugins should be used.
-* Any external module/plugin/library/resource should be in the project. Please don't use github URLs to intstall UPM packages.  
----
-# Delivery
-* Fork this repository or clone this repository and create a new one into your github account and share the repository with the users "shanickgauthier", "juanblasco" and "kk-homa" or make it public.
-* Build Android .apk and upload it to the repository.
-Good luck!
+
+## 🎖️ Conclusion
+Lorem Ipsum
