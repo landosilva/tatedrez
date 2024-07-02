@@ -41,9 +41,8 @@ Although I didn't go with a 3D environment, playing this game gave me the initia
 <img src="https://img.itch.zone/aW1hZ2UvMTM0MDA5NC85NDUyMjkwLnBuZw==/original/pyTgkh.png" alt="Pixel Chess 2" width="200"/>
 <img src="https://img.itch.zone/aW1hZ2UvMTM0MDA5NC8xMjc5MTIyMS5wbmc=/original/nlTm2Q.png" alt="Pixel Chess 3" width="200"/>
 
-Next, I searched for some simple UI and miscellaneous elements and found a set by [bdragon1727](https://bdragon1727.itch.io/), which can be found [here](https://bdragon1727.itch.io/basic-pixel-health-bar-and-scroll-bar).
+Next, I searched for some simple UI and miscellaneous elements and found a set by [bdragon1727](https://bdragon1727.itch.io/), which can be found [here](https://bdragon1727.itch.io/basic-pixel-health-bar-and-scroll-bar).\
 <img src="https://img.itch.zone/aW1hZ2UvMjA3MjY0NC8xMjE4OTg4My5naWY=/794x1000/hzg46C.gif" alt="Pixel UI" width="200"/>
-
 
 With these assets, I made some minor adjustments to fit our needs and created this scene:\
 <img width="200" alt="image" src="https://github.com/landosilva/tatedrez/assets/9856112/52c8254d-0df9-4074-ae97-2265e2e47d0c">
