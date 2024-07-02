@@ -88,7 +88,7 @@ private void WorldToNode(Vector3 worldPosition, out Node result, bool clamp = tr
 ```
 
 #### Movement Scriptable Object
-To manage the different types of pieces and their movements, I decided to create a Scriptable Object with a Custom Editor in order to easily handle new movement types. It is called "Strategy" because I'm using the exact same system for win conditions, as I will show later.
+To manage the different types of pieces and their movements, I decided to create a Scriptable Object with a Custom Editor in order to easily handle new movement types. It is called "Strategy" because I'm using the exact same system for win conditions, as I will show later.\
 <img width="400" alt="Movement Scriptable Object" src="https://github.com/landosilva/tatedrez/assets/9856112/8a5d12d2-6bc6-4745-9f34-ec179aa4fdb1">
 
 #### Animator State Machine Exploration
@@ -112,7 +112,7 @@ PlayerSpot winner = _blackboard.Get<PlayerSpot>(key: GameManager.Variables.Playe
 The results were decent, but next time I would use a properly developed FSM.
 
 #### Win Condition
-As I mention, it's the exact same system used for movement, but to check specific board positions.
+As I mention, it's the exact same system used for movement, but to check specific board positions.\
 <img width="400" alt="Movement Scriptable Object" src="https://github.com/landosilva/tatedrez/assets/9856112/875c895b-e03d-4918-9bf6-03f629b6a890">
 
 ### 🧃 Juice
@@ -162,7 +162,7 @@ int overlapped = Physics2D.OverlapCircleNonAlloc(position, radius: 0.1f, _buffer
 ```
 
 ### ⚙️ Debugger
-Just replacing `Debug.Log` by `Debbuger.Log` you will have all your logs stored and you can easily disable/enable them.
+Just replacing `Debug.Log` by `Debbuger.Log` you will have all your logs stored and you can easily disable/enable them.\
 <img width="402" alt="Debbuger" src="https://github.com/landosilva/tatedrez/assets/9856112/6a70311e-e5dc-4a1a-875b-80af52a09677">
 
 
