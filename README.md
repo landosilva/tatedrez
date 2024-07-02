@@ -1,7 +1,7 @@
 # **TaTeDrez**
 
 ## 👁️ Preview
-<img align="right" src="https://github.com/landosilva/tatedrez/assets/9856112/32988890-5e1c-4276-8d75-baa7b1c28fc9" alt="Preview" width="32%"/>
+<img align="right" src="https://github.com/landosilva/tatedrez/assets/9856112/32988890-5e1c-4276-8d75-baa7b1c28fc9" alt="Preview" width="40%"/>
 First and foremost, thank you, Homa, for this opportunity. It was quite a fun challenge, and I really enjoyed both developing and playing the game with my friends. I apologize for the slight delay in delivering it, but please evaluate my submission as I would love to hear your feedback.
 
 I also took the freedom to add one more thing that I missed while I was playing with friends: timer for each player, as we have in competitive chess.
