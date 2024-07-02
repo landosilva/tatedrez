@@ -1,12 +1,14 @@
 using Lando.Plugins.Events;
 using Tatedrez.Entities;
+using UnityEngine;
 using UnityEngine.Events;
+using Event = Lando.Plugins.Events.Event;
 
 namespace Tatedrez.Managers
 {   
     public partial class GameManager
     {   
-        public class Events
+        public static class Events
         {
             public class Started : IEvent
             {
@@ -18,10 +20,17 @@ namespace Tatedrez.Managers
                 
                 public Over (PlayerSpot winner) => Winner = winner;
             }
+
+            public class Tick : IEvent
+            {
+                public PlayerSpot[] Players { get; }
+
+                public Tick(PlayerSpot[] players) => Players = players;
+            }
         }
-        
-        public UnityEvent OnStarted;
-        public UnityEvent<PlayerSpot> OnOver;
+
+        [field: SerializeField] public UnityEvent OnStarted { get; private set; }
+        [field: SerializeField] public UnityEvent<PlayerSpot> OnOver { get; private set; }
 
         private void SubscribeEvents()
         {

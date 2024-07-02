@@ -21,5 +21,7 @@ namespace Lando.Core.Extensions
         
         public static string ToBold(this string text) 
             => $"<b>{text}</b>";
+        
+        public static string MSpace(this string input, float space = 0.2f) => $"<mspace={space}em>{input}</mspace>";
     }
 }

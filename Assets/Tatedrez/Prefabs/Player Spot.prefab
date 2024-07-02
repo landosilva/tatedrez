@@ -50,6 +50,8 @@ MonoBehaviour:
   - {fileID: 8134712483365667589}
   - {fileID: 952127066811284816}
   - {fileID: 289712727030679639}
+  _durationInSeconds: 60
+  _color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &7866469513910493021
 GameObject:
   m_ObjectHideFlags: 0

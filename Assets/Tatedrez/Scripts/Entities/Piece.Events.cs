@@ -7,7 +7,7 @@ namespace Tatedrez.Entities
 {   
     public partial class Piece
     {
-        public class Events
+        public static class Events
         {
             public class Hold : IEvent
             {
@@ -24,8 +24,8 @@ namespace Tatedrez.Entities
             }
         }
         
-        public UnityEvent OnHeld;
-        public UnityEvent<Vector3> OnReleased;
+        [field: SerializeField] public UnityEvent OnHeld { get; private set; }
+        [field: SerializeField] public UnityEvent<Vector3> OnReleased { get; private set; }
 
         private void SubscribeEvents()
         {

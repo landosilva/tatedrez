@@ -1,3 +1,5 @@
+using System;
+using Lando.Core.Extensions;
 using UnityEngine;
 
 namespace Tatedrez.Entities
@@ -6,14 +8,17 @@ namespace Tatedrez.Entities
     {
         [SerializeField] private Piece.Style _style;
         [SerializeField] private Piece[] _pieces;
+        [SerializeField] private int _durationInSeconds = 60;
+        [SerializeField] private Color _color;
 
-        private float _timer;
-        
         public Piece.Style Style => _style;
         public Piece[] Pieces => _pieces;
         
         public bool IsReady { get; private set; }
-        
+        public TimeSpan Timer { get; private set; }
+        public bool IsTimeOver => Timer.Ticks <= 0;
+        public string Color => _color.ToHex();
+
         private void Start()
         {
             SetStyle(_style);
@@ -43,6 +48,12 @@ namespace Tatedrez.Entities
                 piece.Reset();
             
             SetReady(false);
+            Timer = TimeSpan.FromSeconds(_durationInSeconds);
+        }
+
+        public void Tick(float deltaTime)
+        {
+            Timer = Timer.Subtract(TimeSpan.FromSeconds(deltaTime));
         }
     }
 }

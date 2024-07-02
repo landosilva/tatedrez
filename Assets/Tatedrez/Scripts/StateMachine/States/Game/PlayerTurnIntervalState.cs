@@ -36,6 +36,16 @@ namespace Tatedrez.StateMachine.States.Game
             Board board = _blackboard.Get<Board>();
             Strategy[] winConditions = _blackboard.Get<Strategy[]>();
 
+            PlayerSpot[] players = _blackboard.Get<PlayerSpot[]>();
+            GameManager gameManager = _blackboard.Get<GameManager>();
+
+            if (players.Any(WithoutTimeLeft))
+            {
+                PlayerSpot winner = players.First(WithTimeLeft);
+                gameManager.GameOver(winner);
+                return;
+            }
+
             foreach (Strategy condition in winConditions)
             {
                 IEnumerable<Node> nodes = condition.GetNodes(board).Where(HavePiece);
@@ -47,7 +57,6 @@ namespace Tatedrez.StateMachine.States.Game
                 if (nodes.All(HaveSameStyle))
                 {
                     PlayerSpot winner = _blackboard.Get<PlayerSpot>(key: GameManager.Variables.Player.Current);
-                    GameManager gameManager = _blackboard.Get<GameManager>();
                     gameManager.GameOver(winner);
                     return;
                 }
@@ -59,6 +68,12 @@ namespace Tatedrez.StateMachine.States.Game
             }
             
             SetNextPlayer();
+            gameManager.PassTurn();
+            
+            return;
+
+            bool WithTimeLeft(PlayerSpot player) => !player.IsTimeOver;
+            bool WithoutTimeLeft(PlayerSpot player) => player.IsTimeOver;
         }
         
         private void SetNextPlayer()
@@ -70,7 +85,6 @@ namespace Tatedrez.StateMachine.States.Game
             PlayerSpot nextPlayer = playerSpots[nextPlayerIndex];
             
             _blackboard.Set(GameManager.Variables.Player.Current, nextPlayer);
-            _stateMachine.SetTrigger(name: GameManager.Triggers.Turn.Ended);
         }
     }
 }

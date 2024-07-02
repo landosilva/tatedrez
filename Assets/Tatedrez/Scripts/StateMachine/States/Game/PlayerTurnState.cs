@@ -4,6 +4,7 @@ using Lando.Plugins.Sound;
 using Tatedrez.Entities;
 using Tatedrez.Managers;
 using UnityEngine;
+using Event = Lando.Plugins.Events.Event;
 
 namespace Tatedrez.StateMachine.States.Game
 {
@@ -16,7 +17,25 @@ namespace Tatedrez.StateMachine.States.Game
             
             SoundManager.PlaySFX(SoundDatabase.Game.TurnStart);
         }
-        
+
+        public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        {
+            base.OnStateUpdate(animator, stateInfo, layerIndex);
+            
+            PlayerSpot playerSpot = _blackboard.Get<PlayerSpot>(key: GameManager.Variables.Player.Current);
+            playerSpot.Tick(Time.deltaTime);
+
+            PlayerSpot[] players = _blackboard.Get<PlayerSpot[]>();
+            GameManager.Events.Tick onTick = new(players);
+            Event.Raise(onTick);
+
+            if (!playerSpot.IsTimeOver) 
+                return;
+            
+            GameManager gameManager = _blackboard.Get<GameManager>();
+            gameManager.PassTurn();
+        }
+
         protected override void OnExit()
         {
             base.OnExit();
