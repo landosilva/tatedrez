@@ -21,13 +21,13 @@ You can navigate through my implementations choices below.
 
 ## 🎨 Art Choices  
 ### 💡 Inspiration
-Whenever I start a new project, I like to explore it visually first. This approach has many benefits, such as:
+Whenever I start a new project, I like to explore it visually first. I consider this approach to have many benefits for me, such as:
 * Sparking inspiration;
 * Stimulation of creativity;
 * Warming up my brain cells;
 * Providing a clear vision of what I need to develop, making me more productive in the long run.
 
-With this in mind, I searched the Play Store for chess games with interesting art styles and found one that I liked very much:\
+With this in mind, I searched the Play Store for chess games with interesting art styles and found one that I liked very much:
 
 <img src="https://static-00.iconduck.com/assets.00/google-play-icon-2048x2048-487quz63.png" alt="PlayStore" width="16"/> [**Pocket Chess**](https://play.google.com/store/apps/details?id=com.dkxqzbfkjt.pocketchess) \
 <img src="https://play-lh.googleusercontent.com/iyLry93eL21lpxrRvyHx9XvHe2rFi7Ogobgqjsek1_VjDPBG4M13zKp2F_3alTRa3Rk=w5120-h2880-rw" alt="Pocket Chess 1" width="200"/>
