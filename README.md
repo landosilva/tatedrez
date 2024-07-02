@@ -4,7 +4,7 @@
 <img align="right" src="https://github.com/landosilva/tatedrez/assets/9856112/32988890-5e1c-4276-8d75-baa7b1c28fc9" alt="Preview" width="39%"/>
 First and foremost, thank you, Homa, for this opportunity. It was quite a fun challenge, and I really enjoyed both developing and playing the game with my friends. I apologize for the slight delay in delivering it, but please evaluate my submission as I would love to hear your feedback.
 
-I also took the freedom to add one more thing that I missed while I was playing with friends: timer for each player, as we have in competitive chess.
+I also took the liberty of adding a feature I missed while playing with friends: a timer for each player, similar to what we have in competitive chess.
 
 You can easily check it out here:
 
@@ -21,7 +21,7 @@ You can navigate through my implementations choices below.
 
 ## 🎨 Art Choices  
 ### 💡 Inspiration
-Every time I start a new project I like to explore it visually first. I would say it has a lot of benefits, such as:
+Whenever I start a new project, I like to explore it visually first. This approach has many benefits, such as:
 * Sparking inspiration;
 * Stimulation of creativity;
 * Warming up my brain cells;
@@ -36,7 +36,7 @@ With this in mind, I searched the Play Store for chess games with interesting ar
 
 
 ### 🌅 Chosen Assets
-Although I didn't go with a 3D environment, playing this game gave me the initial push to search for free art assets from familiar sources. I ended up using 2D pixel art by [dani-maccari](https://dani-maccari.itch.io/), which can be found [here](https://dani-maccari.itch.io/pixel-chess).\
+Although I didn't opt for a 3D environment, playing Pocket Chess inspired me to search for free art assets. I ended up using 2D pixel art by [dani-maccari](https://dani-maccari.itch.io/), which can be found [here](https://dani-maccari.itch.io/pixel-chess).\
 <img src="https://img.itch.zone/aW1hZ2UvMTM0MDA5NC85NDUyMjkxLnBuZw==/794x1000/awyDGw.png" alt="Pixel Chess 1" width="200"/>
 <img src="https://img.itch.zone/aW1hZ2UvMTM0MDA5NC85NDUyMjkwLnBuZw==/original/pyTgkh.png" alt="Pixel Chess 2" width="200"/>
 <img src="https://img.itch.zone/aW1hZ2UvMTM0MDA5NC8xMjc5MTIyMS5wbmc=/original/nlTm2Q.png" alt="Pixel Chess 3" width="200"/>
@@ -62,7 +62,7 @@ With that in place, I felt inspired and could start coding.
 The first thing I did was decide how the player would interact with the pieces, so I went with Unity's latest Input System.
 
 ### ♟️ Piece Movement & Placement
-The player grab the piece by using Unity's Raycasts, and the placement is made doing several unit conversion calculations.
+The player grabs the piece using Unity's Raycasts, and the placement is done through several unit conversion calculations.
 
 ```chsarp
 private void IndexToWorld(Vector2Int index, out Vector3 result)
@@ -88,7 +88,7 @@ private void WorldToNode(Vector3 worldPosition, out Node result, bool clamp = tr
 ```
 
 #### Movement Scriptable Object
-To manage the different types of pieces and their movements, I decided to create a Scriptable Object with a Custom Editor in order to easily handle new movement types. It is called "Strategy" because I'm using the exact same system for win conditions, as I will show later.\
+To manage the different types of pieces and their movements, I created a Scriptable Object with a Custom Editor to handle new movement types easily. It is called "Strategy" because I'm using the same system for win conditions, as I will show later.\
 <img width="400" alt="Movement Scriptable Object" src="https://github.com/landosilva/tatedrez/assets/9856112/8a5d12d2-6bc6-4745-9f34-ec179aa4fdb1">
 
 #### Animator State Machine Exploration
@@ -112,14 +112,14 @@ PlayerSpot winner = _blackboard.Get<PlayerSpot>(key: GameManager.Variables.Playe
 The results were decent, but next time I would use a properly developed FSM.
 
 #### Win Condition
-As I mention, it's the exact same system used for movement, but to check specific board positions.\
+As I mentioned, it's the same system used for movement, but to check specific board positions.\
 <img width="400" alt="Movement Scriptable Object" src="https://github.com/landosilva/tatedrez/assets/9856112/875c895b-e03d-4918-9bf6-03f629b6a890">
 
 ### 🧃 Juice
-To enhance the game's feel, I tried to focus a lot on player's feedback with UI elements, animations and particle effects. 
+To enhance the game's feel, I focused on player feedback with UI elements, animations, and particle effects.
 
 #### Sounds
-I added a custom background music, various sound effects for piece movements and win/lose conditions. A big shoutout to my personal friend [Victor Silva](https://settingscon.com/) for his awesome sound design work!
+I added custom background music and various sound effects for piece movements and win/lose conditions. A big shoutout to my personal friend [Victor Silva](https://settingscon.com/) for his awesome sound design work!
 
 </details>
 
@@ -132,7 +132,7 @@ I added a custom background music, various sound effects for piece movements and
 As mentioned, I didn't use any external tools except for DOTween. However, I did implement some reusable code and modules that could be exported as a package and used in other projects.
 
 ### ⚙️ Singletons
-I know, I know. Singletons are not the cool kids in the park and a more robust solution would be Service Locators or Dependency Injection, but I do like to use them, specially for prototyping and simple projects like this. They are just, as any other solution or design pattern, a tool. Every tool can be misused, but also, every tool was created to solve a problem.
+I know, I know. Singletons are not the cool kids in the park, and a more robust solution would be Service Locators or Dependency Injection, but I like to use them, especially for prototyping and simple projects like this. They are just a tool. Every tool can be misused, but also, every tool was created to solve a problem.
 
 #### Mono Behaviour
 I implemented a simple MonoBehaviour Singleton, which can be persistent across scenes or not.
@@ -156,18 +156,18 @@ Event.Unsubscribe<GameManager.Events.Started>(OnGameStarted);
 
 ### ⚙️ Generators
 #### Layers and Layer Masks
-When I'm writing my code I usually like to first simply write as I would like to use it. With that in mind, eventually I came up with this little handy tool to convert Layer to an static class that also already converts to mask, and you can use like this:
+When I'm writing my code, I usually like to first simply write as I would like to use it. With that in mind, eventually, I came up with this handy tool to convert a Layer to a static class that also converts to a mask, and you can use it like this:
 ```charp
 int overlapped = Physics2D.OverlapCircleNonAlloc(position, radius: 0.1f, _buffer, Layer.Mask.Piece);
 ```
 
 ### ⚙️ Debugger
-Just replacing `Debug.Log` by `Debbuger.Log` you will have all your logs stored and you can easily disable/enable them.\
+By replacing `Debug.Log` by `Debbuger.Log` you will have all your logs stored, and you can easily disable/enable them.\
 <img width="402" alt="Debbuger" src="https://github.com/landosilva/tatedrez/assets/9856112/6a70311e-e5dc-4a1a-875b-80af52a09677">
 
 
 ### ⚙️ Sound Database
-This is making use of the Scriptable Object Singleton, and also in the same note as the Layer Generator, I did something similar for the sounds of the game. You can structure your Sound Databse as you please and generate a static class that can be used like this: 
+This uses the Scriptable Object Singleton, and an approach similar to the Layer Generator. You can structure your Sound Database as you please and generate a static class that can be used like this:
 
 ```csharp
 SoundManager.PlaySFX(SoundDatabase.Piece.Hold);
@@ -184,7 +184,7 @@ SoundManager.PlaySFX(SoundDatabase.Piece.Hold);
 <summary>🎖️ Conclusion</summary>
 
 ## 🎖️ Conclusion
-Overall, developing this challenge was a great experience where I took the chance to explore a few things that I was already interested in and I have to say that I'm proud of the final result and looking forward to hear from you.
+Overall, developing this challenge was a great experience where I had the chance to explore a few things that I was already interested in. I am proud of the final result and look forward to hearing from you. 
 Thank you very much!
 
 </details>
