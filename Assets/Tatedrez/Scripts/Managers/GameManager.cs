@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using Lando.Core.Extensions;
 using Lando.Plugins.Debugger;
 using Tatedrez.Data;
 using Tatedrez.Entities;
@@ -44,6 +45,11 @@ namespace Tatedrez.Managers
 
         public void StartGame()
         {
+            PlayerSpot initialPlayer = _playerSpots.PickRandom();
+            
+            _blackboard.Set(Variables.Player.Initial, initialPlayer);
+            _blackboard.Set(Variables.Player.Current, initialPlayer);
+            
             foreach (PlayerSpot playerSpot in _playerSpots)
             {
                 playerSpot.Reset();

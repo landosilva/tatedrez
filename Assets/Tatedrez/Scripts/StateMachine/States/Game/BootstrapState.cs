@@ -1,8 +1,10 @@
-using Lando.Core.Extensions;
+using Lando.Plugins.Debugger;
 using Lando.Plugins.Sound;
 using Tatedrez.Entities;
 using Tatedrez.Managers;
+using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.EnhancedTouch;
 
 namespace Tatedrez.StateMachine.States.Game
 {
@@ -14,26 +16,50 @@ namespace Tatedrez.StateMachine.States.Game
             
             PlayerSpot[] playerSpots = _blackboard.Get<PlayerSpot[]>();
             PlayerInputManager playerInputManager = _blackboard.Get<PlayerInputManager>();
+
+            InputDevice inputDevice = InputSystem.GetDevice<Touchscreen>();
             
-            for (int i = 0; i < playerSpots.Length; i++)
+            if (inputDevice == null || Application.platform == RuntimePlatform.WebGLPlayer)
             {
-                Touchscreen touchscreen = InputSystem.GetDevice<Touchscreen>();
-                playerInputManager.JoinPlayer(i, pairWithDevice: touchscreen);
-                
-                PlayerSpot playerSpot = playerSpots[i];
-                foreach (Piece piece in playerSpot.Pieces) 
-                    piece.Unhighlight();
+                InputSystem.onDeviceChange += OnDeviceChange;
+                GameObject touchSimulation = new(name: "Touch Simulation", components: typeof(TouchSimulation));
+                DontDestroyOnLoad(touchSimulation);
             }
-            
-            PlayerSpot initialPlayer = playerSpots.PickRandom();
-            
-            _blackboard.Set(GameManager.Variables.Player.Initial, initialPlayer);
-            _blackboard.Set(GameManager.Variables.Player.Current, initialPlayer);
+            else
+                CreatePlayers();
             
             _stateMachine.SetBool(name: GameManager.States.Bootstrapped, true);
             
             SoundManager.PlayMusic(SoundDatabase.Music.Background);
             SoundManager.SetMusicLayerVolume(0, volume: 0.2f);
+            
+            return;
+            
+            void OnDeviceChange(InputDevice device, InputDeviceChange change)
+            {
+                if (change != InputDeviceChange.Added || device is not Touchscreen) 
+                    return;
+                
+                Debugger.Log("Adding simulated touch controls.");
+                InputSystem.onDeviceChange -= OnDeviceChange;
+                    
+                inputDevice = device;
+                CreatePlayers();
+            }
+            
+            void CreatePlayers()
+            {
+                Debugger.Log("Creating players with device: " + inputDevice.name);
+                
+                for (int i = 0; i < playerSpots.Length; i++)
+                {
+                    playerInputManager.JoinPlayer(i, pairWithDevice: inputDevice);
+                
+                    PlayerSpot playerSpot = playerSpots[i];
+                    foreach (Piece piece in playerSpot.Pieces) 
+                        piece.Unhighlight();
+                }
+            }
         }
     }
 }

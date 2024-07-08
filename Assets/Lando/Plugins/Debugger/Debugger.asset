@@ -14,21 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enabled: 1
   _sources:
-  - <Name>k__BackingField: '[GameManager.OnPlayerJoined]'
-    <Color>k__BackingField: {r: 0.8, g: 0.24000001, b: 0.35963213, a: 1}
+  - <Name>k__BackingField: DisplayClass.OnEnter.OnDeviceChange
+    <Color>k__BackingField: {r: 0.24000001, g: 0.7218057, b: 0.8, a: 1}
     <Enabled>k__BackingField: 0
-  - <Name>k__BackingField: '[Player.OnTouch.OnTouchBegan]'
-    <Color>k__BackingField: {r: 0.2875786, g: 0.8, b: 0.24000001, a: 1}
+  - <Name>k__BackingField: GameManager.OnPlayerJoined
+    <Color>k__BackingField: {r: 0.24000001, g: 0.4548869, b: 0.8, a: 1}
     <Enabled>k__BackingField: 0
-  - <Name>k__BackingField: '[Player.OnTouch.OnTouchEnded]'
-    <Color>k__BackingField: {r: 0.8, g: 0.24000001, b: 0.7016143, a: 1}
+  - <Name>k__BackingField: GameState.OnStateEnter
+    <Color>k__BackingField: {r: 0.4911561, g: 0.24000001, b: 0.8, a: 1}
     <Enabled>k__BackingField: 0
-  - <Name>k__BackingField: '[GameState.OnStateEnter]'
-    <Color>k__BackingField: {r: 0.8, g: 0.5151496, b: 0.24000001, a: 1}
+  - <Name>k__BackingField: GameState.OnStateExit
+    <Color>k__BackingField: {r: 0.53293556, g: 0.8, b: 0.24000001, a: 1}
     <Enabled>k__BackingField: 0
-  - <Name>k__BackingField: '[GameState.OnStateExit]'
-    <Color>k__BackingField: {r: 0.24000001, g: 0.44915327, b: 0.8, a: 1}
+  - <Name>k__BackingField: Player.OnTouch.OnTouchBegan
+    <Color>k__BackingField: {r: 0.74337095, g: 0.24000001, b: 0.8, a: 1}
     <Enabled>k__BackingField: 0
-  - <Name>k__BackingField: '[GameOverState.OnEnter]'
-    <Color>k__BackingField: {r: 0.24000001, g: 0.8, b: 0.5687779, a: 1}
+  - <Name>k__BackingField: Player.OnTouch.OnTouchEnded
+    <Color>k__BackingField: {r: 0.8, g: 0.6812292, b: 0.24000001, a: 1}
     <Enabled>k__BackingField: 0

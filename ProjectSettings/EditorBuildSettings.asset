@@ -6,7 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Tatedrez/Scenes/Main.unity
+    path: Assets/Tatedrez/Scenes/01 Initial.unity
+    guid: 3f80aa6f6fc9a48bca4be63fe2563f6f
+  - enabled: 1
+    path: Assets/Tatedrez/Scenes/02 Main.unity
     guid: 3fc8acdd13e6c734bafef6554d6fdbcd
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 214692f17ccbe4e29943cbcef08510da, type: 2}

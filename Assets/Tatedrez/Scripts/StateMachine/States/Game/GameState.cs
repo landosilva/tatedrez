@@ -34,5 +34,7 @@ namespace Tatedrez.StateMachine.States.Game
 
         protected virtual void OnEnter() { }
         protected virtual void OnExit() { }
+
+        protected void OnDestroy() => OnExit();
     }
 }

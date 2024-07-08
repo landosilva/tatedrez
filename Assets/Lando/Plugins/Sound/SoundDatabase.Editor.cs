@@ -1,13 +1,15 @@
-#if UNITY_EDITOR
 using System.IO;
 using Lando.Core.Extensions;
-using UnityEditor;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace Lando.Plugins.Sound
 {
     public partial class SoundDatabase
     {
+#if UNITY_EDITOR
         [CustomEditor(typeof(SoundDatabase))]
         public class SoundDatabaseEditor : Editor
         {   
@@ -133,6 +135,6 @@ namespace Lando.Plugins.Sound
             writer.WriteLine("    }");
             writer.WriteLine("}");
         }
+#endif       
     }
 }
-#endif

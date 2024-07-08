@@ -8,10 +8,13 @@ namespace Lando.Core.Extensions
     public static class StringExtensions
     {
         private const string WHITESPACE_PATTERN = @"\s+";
+        private const string NUMBER_PATTERN = @"\d";
         private static readonly Regex _whitespaceRegex = new(WHITESPACE_PATTERN);
         
         public static string ReplaceWhitespace(this string input, string replacement = "") 
             => _whitespaceRegex.Replace(input, replacement);
+        public static string ReplaceNumbers(this string input, string replacement = "") 
+            => Regex.Replace(input, NUMBER_PATTERN, replacement);
         
         public static bool IsNullOrEmpty(this string text) 
             => string.IsNullOrEmpty(text);

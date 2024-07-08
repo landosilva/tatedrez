@@ -2,8 +2,8 @@ using Lando.Plugins.Debugger;
 using Lando.Plugins.Sound;
 using Tatedrez.Entities;
 using Tatedrez.Managers;
-using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 
 namespace Tatedrez.StateMachine.States.Game
 {
@@ -18,14 +18,18 @@ namespace Tatedrez.StateMachine.States.Game
             CameraManager.ZoomOut();
             
             SoundManager.PlaySFX(SoundDatabase.Game.GameOver);
+            
+            InputSystem.onEvent += OnInputEvent;
         }
 
-        public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        private void OnInputEvent(InputEventPtr inputEvent, InputDevice inputDevice)
         {
-            base.OnStateUpdate(animator, stateInfo, layerIndex);
-            
-            if (!Touchscreen.current.primaryTouch.isInProgress)
+            if (!inputEvent.HasButtonPress())
                 return;
+            if (inputDevice is not (Touchscreen or Mouse))
+                return;
+            
+            InputSystem.onEvent -= OnInputEvent;
             
             GameManager gameManager = _blackboard.Get<GameManager>();
             gameManager.StartGame();
@@ -34,6 +38,8 @@ namespace Tatedrez.StateMachine.States.Game
         protected override void OnExit()
         {
             base.OnExit();
+            
+            InputSystem.onEvent -= OnInputEvent;
             
             _stateMachine.SetBool(name: GameManager.States.Started, false);
             _stateMachine.SetBool(name: GameManager.States.Over, false);

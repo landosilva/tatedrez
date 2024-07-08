@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 namespace Lando.Plugins.Sound
 {
-    [CreateAssetMenu(fileName = "Sound Database", menuName = "LightningRod/Plugins/Sound/Sound Database")]
+    [CreateAssetMenu(fileName = "Sound Database", menuName = "Lando/Plugins/Sound/Sound Database")]
     public partial class SoundDatabase : Singleton<SoundDatabase>
     {
         [SerializeField] private AudioCategory[] _categories;

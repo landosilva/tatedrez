@@ -6,7 +6,7 @@ using Event = Lando.Plugins.Events.Event;
 
 namespace Tatedrez.Entities
 {
-    public partial class Board : MonoBehaviour
+    public class Board : MonoBehaviour
     {
         [SerializeField, Tooltip("Grid size in units")] private Vector2Int _size;
         [SerializeField, Tooltip("Offset in pixels")] private Vector2Int _offset;
@@ -129,6 +129,20 @@ namespace Tatedrez.Entities
         {
             foreach (Node node in _map.Values)
                 node.Clear();
+        }
+        
+        private void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.white.With(a: 0.5f);
+            for (int x = 0; x < _size.x; x++)
+            {
+                for (int y = 0; y < _size.y; y++)
+                {
+                    Vector2Int position = new(x, y);
+                    IndexToWorld(position, out Vector3 worldPosition);
+                    Gizmos.DrawCube(center: worldPosition, size: Vector3.one * 0.9f);
+                }
+            }
         }
     }
 }

@@ -8,23 +8,28 @@ using UnityEngine;
 
 namespace Lando.Plugins.Generators.Editor.Layer
 {
-    public static class LayerGenerator
+    public abstract class Generator : ScriptableObject
     {
-        [MenuItem("Tools/Lightning Rod/Generators/Layer Class")]
-        public static void Generate()
+        public abstract void Generate(Settings settings);
+    }
+    
+    [CreateAssetMenu(fileName = "Layer Generator", menuName = "Lando/Generators/Layer")]
+    public class LayerGenerator : Generator
+    {
+        public override void Generate(Settings settings)
         {
             List<LayerData> layersData = GetAllLayersData();
             StringBuilder stringBuilder = new();
 
             int identLevel = 0;
 
-            if (LayerSettings.HasNamespace)
+            if (settings.HasNamespace)
             {
-                AddLine($"namespace {LayerSettings.Namespace}");
+                AddLine($"namespace {settings.Namespace}");
                 OpenCurlyBrackets();
             }
             
-            AddLine($"public static class {LayerSettings.ClassName}");
+            AddLine($"public static class {settings.ClassName}");
             OpenCurlyBrackets();
             
             foreach (LayerData layerData in layersData) 
@@ -42,12 +47,12 @@ namespace Lando.Plugins.Generators.Editor.Layer
             CloseCurlyBrackets();
             CloseCurlyBrackets();
             
-            string fileName = string.Concat(LayerSettings.ClassName, ".cs");
+            string fileName = string.Concat(settings.ClassName, ".cs");
 
-            if (!Directory.Exists(LayerSettings.Path))
-                Directory.CreateDirectory(LayerSettings.Path);
+            if (!Directory.Exists(settings.Path))
+                Directory.CreateDirectory(settings.Path);
             
-            string fullPath = string.Concat(LayerSettings.Path, "/", fileName);
+            string fullPath = string.Concat(settings.Path, "/", fileName);
             string contents = stringBuilder.ToString();
             
             File.WriteAllText(fullPath, contents);

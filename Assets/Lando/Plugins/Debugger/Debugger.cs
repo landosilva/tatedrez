@@ -35,9 +35,12 @@ namespace Lando.Plugins.Debugger
 
             StackTrace stackTrace = new();
             StackFrame[] stackFrames = stackTrace.GetFrames();
-            
-            if (stackFrames == null) 
+
+            if (stackFrames == null || stackFrames.Length < 2)
+            {
+                Debug.Log(log);
                 return;
+            }
             
             StackFrame frame = stackFrames[1];
             MethodBase method = frame.GetMethod();
@@ -45,15 +48,24 @@ namespace Lando.Plugins.Debugger
             if (declaringType == null)
                 return;
 
-            string input = $"[{declaringType.Name}.{method.Name}]";
-            string cleaned = CleanString(input);
+            string key = $"{Clean(declaringType.Name)}.{Clean(method.Name)}";
 
-            Instance.AddOrGet(cleaned, out DebugSource source);
+            Instance.AddOrGet(key, out DebugSource source);
             if (!source.Enabled) 
                 return;
 
-            cleaned = cleaned.ToColor(source.Color).ToBold() + ": ";
-            Debug.Log($"{cleaned}{log}");
+            string prefix = $"[{key.ToColor(source.Color).ToBold()}]: ";
+            Debug.Log($"{prefix}{log}");
+        }
+
+        private static string Clean(string input)
+        {
+            input = Regex.Replace(input, pattern: "g__", replacement: ".");
+            
+            const string pattern = "[<>|0-9_]|c__";
+            const string replacement = "";
+            string result = Regex.Replace(input, pattern, replacement);
+            return result;
         }
         
         private void AddOrGet(string source, out DebugSource debugSource)
@@ -69,13 +81,6 @@ namespace Lando.Plugins.Debugger
             return;
 
             bool Match(DebugSource o) => o.Name == source;
-        }
-
-        private static string CleanString(string input)
-        {
-            const string pattern = @"\[(\w+)\.<(\w+)>g__(\w+)\|\d+_\d+\]";
-            string cleaned = Regex.Replace(input, pattern, replacement: "[$1.$2.$3]");
-            return cleaned;
         }
 
         private static Color GetRandomVisibleColor()

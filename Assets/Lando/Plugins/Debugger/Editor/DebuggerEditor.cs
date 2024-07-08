@@ -51,6 +51,9 @@ namespace Lando.Plugins.Debugger.Editor
                 EditorGUILayout.EndHorizontal();
             }
             
+            if (GUILayout.Button(text: "Disable All")) 
+                debugger.Sources.ForEach(source => source.Enabled = false);
+            
             if (GUILayout.Button(text: "Clear")) 
                 debugger.Sources.Clear();
             

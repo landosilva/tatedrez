@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3bc5657e51d048299f99a9e1bdbc850f, type: 3}
-  m_Name: Layer Settings
+  m_Name: Scene Settings
   m_EditorClassIdentifier: 
-  _className: Layer
+  _className: Scene
   _path: Tatedrez/Scripts/Generated
   _namespace: Tatedrez
-  _generator: {fileID: 11400000, guid: 9db151cd05d1d42249dcfe4b4f367eb6, type: 2}
+  _generator: {fileID: 11400000, guid: e8d6a5cf781c74cef9a0d2b8072826c8, type: 2}

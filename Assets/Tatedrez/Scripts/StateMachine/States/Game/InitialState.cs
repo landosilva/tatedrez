@@ -1,6 +1,6 @@
 using Tatedrez.Managers;
-using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 
 namespace Tatedrez.StateMachine.States.Game
 {
@@ -12,28 +12,26 @@ namespace Tatedrez.StateMachine.States.Game
             
             _stateMachine.SetBool(name: GameManager.States.Started, false);
             _stateMachine.SetBool(name: GameManager.States.Over, false);
+            
+            InputSystem.onEvent += OnInputEvent;
         }
 
-        public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+        private void OnInputEvent(InputEventPtr inputEvent, InputDevice inputDevice)
         {
-            base.OnStateUpdate(animator, stateInfo, layerIndex);
-
-            if (Touchscreen.current == null)
-            {
-                if (!Mouse.current.leftButton.wasPressedThisFrame)
-                    return;
-            }
-            else if (!Touchscreen.current.primaryTouch.isInProgress)
+            if (!inputEvent.HasButtonPress())
+                return;
+            if (inputDevice is not (Touchscreen or Mouse))
                 return;
             
             GameManager gameManager = _blackboard.Get<GameManager>();
             gameManager.StartGame();
         }
-
+        
         protected override void OnExit()
         {
             base.OnExit();
             
+            InputSystem.onEvent -= OnInputEvent;
             CameraManager.ZoomIn();
         }
     }
