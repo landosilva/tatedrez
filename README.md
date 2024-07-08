@@ -9,8 +9,8 @@ I also took the liberty of adding a feature I missed while playing with friends:
 You can easily check it out here:
 
 <img src="https://cdn-icons-png.flaticon.com/512/174/174836.png" alt="Android" width="16"/> **Android:**\
-https://i.diawi.com/Xi2oyf \
-<img src="https://www.diawi.com/qrcode/link/Xi2oyf" alt="rQkF4N" width="192"/>
+https://i.diawi.com/8c1UET \
+<img src="https://www.diawi.com/qrcode/link/8c1UET" alt="rQkF4N" width="192"/>
 
 You can navigate through my implementations choices below.
 
