@@ -2,7 +2,7 @@
 
 ## 👁️ Preview
 <img align="right" src="https://github.com/landosilva/tatedrez/assets/9856112/32988890-5e1c-4276-8d75-baa7b1c28fc9" alt="Preview" width="39%"/>
-First and foremost, thank you, Homa, for this opportunity. It was quite a fun challenge, and I really enjoyed both developing and playing the game with my friends. I apologize for the slight delay in delivering it, but please evaluate my submission as I would love to hear your feedback.
+First and foremost, thank you for this opportunity. It was quite a fun challenge, and I really enjoyed both developing and playing the game with my friends. I apologize for the slight delay in delivering it, but please evaluate my submission as I would love to hear your feedback.
 
 I also took the liberty of adding a feature I missed while playing with friends: a timer for each player, similar to what we have in competitive chess.
 
